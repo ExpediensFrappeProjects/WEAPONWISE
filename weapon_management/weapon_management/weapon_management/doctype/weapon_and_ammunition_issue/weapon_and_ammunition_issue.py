@@ -53,28 +53,32 @@ def get_personnels_details(personnelRFID):
 
 
 @frappe.whitelist()
-def get_weapon_details(weaponRFID, personnelID, unitLocation):
-    weaponCategoryAssignedList = frappe.get_all("Weapon Category Assigned List", filters={"parent": personnelID}, fields=['weapon_category'])
-    weaponCategoryAssignedList = [weaponCategory['weapon_category'] for weaponCategory in weaponCategoryAssignedList]
+def get_weapon_details(weaponRFID, unitLocation):
+    # weaponCategoryAssignedList = frappe.get_all("Weapon Category Assigned List", filters={"parent": personnelID}, fields=['weapon_category'])
+    # weaponCategoryAssignedList = [weaponCategory['weapon_category'] for weaponCategory in weaponCategoryAssignedList]
     weaponDetails = frappe.get_value("Weapon In Details", {"rfid_tag": weaponRFID,"status":"Available","unit_location":unitLocation}, 
                                                           ['weapon_category', 'weapon_name', 'serial_number', 'butt_number', 'storage_id', 'shelf'])
     if weaponDetails is None:
         return 1
-    weaponCategorySelected = weaponDetails[0]
-    if weaponCategorySelected in weaponCategoryAssignedList:
+    # weaponCategorySelected = weaponDetails[0]
+    # if weaponCategorySelected in weaponCategoryAssignedList:
+    elif weaponDetails:
         return weaponDetails
     else:
         return None
 
 
 @frappe.whitelist()
-def validate_and_get_ammunition_details(ammunition_rfid, weaponCategory,weaponName,unitLocation):
-    ammunitionCategory = frappe.get_value("Weapon Master", {"weapon_category": weaponCategory,"weapon_name":weaponName}, ['ammunition_category'])
+# def validate_and_get_ammunition_details(ammunition_rfid, weaponCategory,weaponName,unitLocation):
+
+def validate_and_get_ammunition_details(ammunition_rfid,unitLocation):
+    # ammunitionCategory = frappe.get_value("Weapon Master", {"weapon_category": weaponCategory,"weapon_name":weaponName}, ['ammunition_category'])
     ammunitionDetails = frappe.get_value("Ammunition In Details", {"rfid_tag": ammunition_rfid,"unit_location":unitLocation}, ['ammunition_category', 'ammunition_box_id', 'available_quantity', 'round_per_box', 'storage_id', 'shelf'])
     if ammunitionDetails is None:
         return 1
-    ammunitionCategorySelected = ammunitionDetails[0]
-    if str(ammunitionCategorySelected) == str(ammunitionCategory):
+    # ammunitionCategorySelected = ammunitionDetails[0]
+    # if str(ammunitionCategorySelected) == str(ammunitionCategory):
+    elif ammunitionDetails:
         return ammunitionDetails
     else:
         return None
