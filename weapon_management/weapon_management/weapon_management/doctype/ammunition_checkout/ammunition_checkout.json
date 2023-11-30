@@ -1,0 +1,270 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 16:03:59.862257",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "unit_details_section",
+  "issue_document_number",
+  "unit_location",
+  "column_break_26bco",
+  "date_and_time",
+  "duty_details_section",
+  "duty_code",
+  "duty_name",
+  "duty_location",
+  "column_break_ibl4z",
+  "duty_start",
+  "duty_end",
+  "personnel_details_section",
+  "personnel_id",
+  "person_name",
+  "column_break_aaghl",
+  "rank",
+  "ammunition_details_section",
+  "ammunition_category",
+  "box_number",
+  "quantity",
+  "available_quantity",
+  "column_break_ltsvn",
+  "round_per_box",
+  "ammunition_rfid",
+  "storage_id",
+  "storage_shelf",
+  "checkout_details_section",
+  "authorised_by",
+  "armourer_id",
+  "column_break_plhsl",
+  "authorizer_name",
+  "armourer_name",
+  "section_break_ukfel",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Unit Details"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location",
+   "options": "Unit Master"
+  },
+  {
+   "fieldname": "issue_document_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Issue Document Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_and_time",
+   "fieldtype": "Date",
+   "label": "Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_details_section",
+   "fieldtype": "Section Break",
+   "label": "Duty Details"
+  },
+  {
+   "fieldname": "duty_location",
+   "fieldtype": "Data",
+   "label": "Duty Location",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personnel_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personnel Details"
+  },
+  {
+   "fieldname": "personnel_id",
+   "fieldtype": "Link",
+   "label": "Personnel ID",
+   "options": "Person Master"
+  },
+  {
+   "fieldname": "rank",
+   "fieldtype": "Link",
+   "label": "Rank",
+   "options": "Rank Master"
+  },
+  {
+   "fieldname": "ammunition_details_section",
+   "fieldtype": "Section Break",
+   "label": "Ammunition Details"
+  },
+  {
+   "fieldname": "box_number",
+   "fieldtype": "Data",
+   "label": "Box Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Quantity "
+  },
+  {
+   "fieldname": "round_per_box",
+   "fieldtype": "Data",
+   "label": "Round Per Box",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_rfid",
+   "fieldtype": "Data",
+   "label": "Ammunition RFID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master"
+  },
+  {
+   "fieldname": "storage_shelf",
+   "fieldtype": "Data",
+   "label": "Storage Shelf",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkout_details_section",
+   "fieldtype": "Section Break",
+   "label": "Checkout Details"
+  },
+  {
+   "fieldname": "authorised_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Authorised By",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "armourer_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Armourer ID",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "armourer_name",
+   "fieldtype": "Data",
+   "label": "Armourer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "label": "Person Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_category",
+   "fieldtype": "Link",
+   "label": "Ammunition Category",
+   "options": "Ammunition Category Master"
+  },
+  {
+   "fieldname": "column_break_26bco",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duty_name",
+   "fieldtype": "Link",
+   "label": "Duty Name",
+   "options": "Duty Master"
+  },
+  {
+   "fieldname": "column_break_ibl4z",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_aaghl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "available_quantity",
+   "fieldtype": "Data",
+   "label": "Available Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ltsvn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_plhsl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ukfel",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "duty_code",
+   "fieldtype": "Link",
+   "label": "Duty Code",
+   "options": "Duty Creation"
+  },
+  {
+   "fieldname": "duty_start",
+   "fieldtype": "Datetime",
+   "label": "Duty  Start  Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_end",
+   "fieldtype": "Datetime",
+   "label": "Duty End  Date and Time",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-20 14:12:48.720581",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Ammunition CheckOut",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 17:12:54.692142",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_rfid",
+  "weapon_details_section",
+  "weapon_name",
+  "weapon_serial_number",
+  "column_break_ahmws",
+  "weapon_category",
+  "butt_number",
+  "current_location_section",
+  "unit_location",
+  "storage_id",
+  "shelf",
+  "new_location_section",
+  "new_unit_location",
+  "new_storage_id",
+  "new_shelf",
+  "moved_by_section",
+  "column_break_1mpnp",
+  "authorized_by",
+  "armourer_id",
+  "unit_incharge",
+  "column_break_jc5c3",
+  "authorizer_name",
+  "armourer_name",
+  "incharge_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon Details"
+  },
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "label": "Weapon Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_serial_number",
+   "fieldtype": "Data",
+   "label": "Weapon Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weapon RFID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ahmws",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "label": "Weapon Category",
+   "options": "Weapon Category Master"
+  },
+  {
+   "fieldname": "butt_number",
+   "fieldtype": "Data",
+   "label": "Butt Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_location_section",
+   "fieldtype": "Section Break",
+   "label": "Current Location"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location",
+   "options": "Unit Master"
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master"
+  },
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_unit_location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "New Unit Location ",
+   "options": "Unit Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "new_storage_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "New Storage ID",
+   "options": "Storage System Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "new_shelf",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "New Shelf",
+   "reqd": 1
+  },
+  {
+   "fieldname": "moved_by_section",
+   "fieldtype": "Section Break",
+   "label": "Moved By "
+  },
+  {
+   "fieldname": "column_break_1mpnp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "authorized_by",
+   "fieldtype": "Link",
+   "label": "Authorized By ",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "armourer_id",
+   "fieldtype": "Link",
+   "label": "Armourer ID",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_incharge",
+   "fieldtype": "Link",
+   "label": "Unit Incharge",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jc5c3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "authorized_by.full_name",
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "armourer_name",
+   "fieldtype": "Data",
+   "label": "Armourer Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "incharge_name",
+   "fieldtype": "Data",
+   "label": "Incharge Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_location_section",
+   "fieldtype": "Section Break",
+   "label": "New Location"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-19 17:32:36.464317",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Unit Movement",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

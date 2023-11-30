@@ -1,0 +1,45 @@
+{
+ "charts": [
+  {
+   "chart_name": "Return Documents",
+   "label": "Daily Weapon and Ammunition Return"
+  },
+  {
+   "chart_name": "Issue Documents",
+   "label": "Daily Weapon and Ammunition Issue "
+  },
+  {
+   "chart_name": "Ammunition Inventory",
+   "label": "Ammunition Inventory"
+  },
+  {
+   "chart_name": "Weapon Inventory",
+   "label": "Weapon Inventory"
+  }
+ ],
+ "content": "[{\"id\":\"4V6vJ5FqPj\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Weapon Management</span>\",\"col\":12}},{\"id\":\"DOpu0gwg4R\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Inventory</b></span>\",\"col\":12}},{\"id\":\"IQhTC63atO\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Ammunition Inventory\",\"col\":12}},{\"id\":\"W9om2z-jrJ\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Weapon Inventory\",\"col\":12}},{\"id\":\"W5v_txBuDf\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iXvEvSY8R9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Issue Stats</b></span>\",\"col\":12}},{\"id\":\"Xrk8rCSXB6\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Weapon and Ammunition Issue \",\"col\":6}},{\"id\":\"wD77PrXqjM\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Daily Weapon and Ammunition Return\",\"col\":6}}]",
+ "creation": "2023-10-12 18:28:03.948829",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "color-energy-points",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Weapon Management",
+ "links": [],
+ "modified": "2023-11-23 16:59:51.129136",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Management",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "Weapon Management"
+}

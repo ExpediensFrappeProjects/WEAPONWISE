@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 12:05:10.029481",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "shelf",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf"
+  },
+  {
+   "default": "Empty",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status ",
+   "options": "\nEmpty\nOccupied"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-27 15:29:30.063496",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Storage System Shelf",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

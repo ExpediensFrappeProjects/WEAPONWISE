@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "autoname": "autoname",
+ "creation": "2023-09-22 18:21:22.777171",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "duty_details_section",
+  "column_break_p5nbr",
+  "unit_location",
+  "duty_start",
+  "duty_location",
+  "column_break_9bmpv",
+  "duty_name",
+  "duty_end",
+  "section_break_uezs",
+  "authorized_by",
+  "column_break_iehb",
+  "authorizer_name",
+  "section_break_iraj",
+  "remarks",
+  "number_of_persons_required_section",
+  "persons_required",
+  "assign_duty",
+  "duty_assignment_section",
+  "assigned_people"
+ ],
+ "fields": [
+  {
+   "fieldname": "duty_details_section",
+   "fieldtype": "Section Break",
+   "label": "Duty Details"
+  },
+  {
+   "fieldname": "column_break_p5nbr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit Location",
+   "options": "Unit Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duty_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Duty Name",
+   "options": "Duty Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duty_location",
+   "fieldtype": "Data",
+   "label": "Duty Location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duty_start",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Duty Start Date and Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_9bmpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duty_end",
+   "fieldtype": "Datetime",
+   "label": "Duty End  Date and Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "authorized_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Authorized By",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "authorized_by.full_name",
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks "
+  },
+  {
+   "fieldname": "number_of_persons_required_section",
+   "fieldtype": "Section Break",
+   "label": "Number of Persons Required"
+  },
+  {
+   "fieldname": "persons_required",
+   "fieldtype": "Table",
+   "label": "Number of Persons Required",
+   "options": "Duty Number of Persons Required",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duty_assignment_section",
+   "fieldtype": "Section Break",
+   "label": "Duty Assignment"
+  },
+  {
+   "fieldname": "assigned_people",
+   "fieldtype": "Table",
+   "label": "Assigned People",
+   "options": "Duty Persons Details"
+  },
+  {
+   "fieldname": "assign_duty",
+   "fieldtype": "Button",
+   "label": "Assign Duty"
+  },
+  {
+   "fieldname": "section_break_iraj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_uezs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_iehb",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-11-21 14:30:48.953188",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Duty Creation",
+ "naming_rule": "By script",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "New Duty"
+  },
+  {
+   "color": "Green",
+   "title": "Assign Duty"
+  }
+ ]
+}

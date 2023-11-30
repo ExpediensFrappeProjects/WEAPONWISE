@@ -1,0 +1,33 @@
+{
+ "chart_name": "Ammunition Inventory",
+ "chart_type": "Report",
+ "creation": "2023-11-01 13:17:58.039406",
+ "custom_options": "{\"x_field\": \"ammunition_name\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"name\": \"row 1\", \"y_field\": \"available_ammunition\", \"color\": \"#B4CD29\"}], \"y_fields\": [\"available_ammunition\"], \"colors\": [\"#B4CD29\"]}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "filters_json": "{}",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "modified": "2023-11-01 13:17:58.150816",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Ammunition Inventory",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "report_name": "Ammunition Inventory",
+ "roles": [],
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Bar",
+ "use_report_chart": 0,
+ "x_field": "ammunition_name",
+ "y_axis": [
+  {
+   "color": "#B4CD29",
+   "y_field": "available_ammunition"
+  }
+ ]
+}

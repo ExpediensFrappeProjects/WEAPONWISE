@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 11:45:32.347441",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "unit_location",
+  "storage_system_id",
+  "section_break_ancxl",
+  "storage_system_shelf"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit Location",
+   "options": "Unit Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "storage_system_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Storage System ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "storage_system_shelf",
+   "fieldtype": "Table",
+   "label": "Storage System Shelf",
+   "options": "Storage System Shelf",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ancxl",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-18 12:29:52.018951",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Storage System Master",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "storage_system_id"
+}

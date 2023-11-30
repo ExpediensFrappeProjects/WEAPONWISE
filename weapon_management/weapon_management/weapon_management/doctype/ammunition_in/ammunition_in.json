@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 15:19:33.860257",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_details_section",
+  "unit_location",
+  "document_number",
+  "column_break_s2swd",
+  "document_date",
+  "brows_pdf",
+  "section_break_vlwa2",
+  "ammunition_in_details",
+  "checkout_details_section",
+  "authorised_by",
+  "source",
+  "column_break_6kkyq",
+  "authorizer_name",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit Location",
+   "options": "Unit Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Document Number ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Document Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ammunition_in_details",
+   "fieldtype": "Table",
+   "label": "Ammunition In Details",
+   "options": "Ammunition In Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "checkout_details_section",
+   "fieldtype": "Section Break",
+   "label": "Checkout Details"
+  },
+  {
+   "fieldname": "authorised_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Authorised By",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "label": "Source "
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fetch_from": "authorised_by.full_name",
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name"
+  },
+  {
+   "fieldname": "document_details_section",
+   "fieldtype": "Section Break",
+   "label": "Document Details"
+  },
+  {
+   "fieldname": "column_break_s2swd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "brows_pdf",
+   "fieldtype": "Attach",
+   "label": "Brows PDF"
+  },
+  {
+   "fieldname": "section_break_vlwa2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_6kkyq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Ammunition In",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-19 11:43:56.475069",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Ammunition In",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

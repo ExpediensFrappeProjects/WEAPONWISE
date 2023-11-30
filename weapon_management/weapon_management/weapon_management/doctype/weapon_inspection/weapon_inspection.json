@@ -1,0 +1,197 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 17:33:52.015133",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_details_section",
+  "weapon_rfid",
+  "weapon_name",
+  "weapon_serial_number",
+  "weapon_category",
+  "column_break_sbxtc",
+  "weapon_butt_number",
+  "unit_location",
+  "storage_id",
+  "shelf",
+  "section_break_fmt8f",
+  "column_break_g3t5n",
+  "inspection_details_section",
+  "due_date",
+  "inspection_date",
+  "result",
+  "browse_pdf",
+  "column_break_vicu8",
+  "issues_found",
+  "comment",
+  "personnel_details_section",
+  "inspected_by",
+  "column_break_sje9h",
+  "inspected_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon Details"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location ",
+   "options": "Unit Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "label": "Weapon Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_serial_number",
+   "fieldtype": "Data",
+   "label": "Weapon Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "label": "Weapon Category",
+   "options": "Weapon Category Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_butt_number",
+   "fieldtype": "Data",
+   "label": "Weapon Butt Number ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_g3t5n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_details_section",
+   "fieldtype": "Section Break",
+   "label": "Inspection Details"
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "label": "Inspection Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "label": "Result ",
+   "options": "\nPass\nFail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issues_found",
+   "fieldtype": "Small Text",
+   "label": "Issues Found "
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "personnel_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personnel Details"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By ",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_sje9h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "inspected_by.full_name",
+   "fieldname": "inspected_name",
+   "fieldtype": "Data",
+   "label": "Inspected Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fmt8f",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weapon RFID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sbxtc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_vicu8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "browse_pdf",
+   "fieldtype": "Attach",
+   "label": "Browse PDF"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-18 14:42:33.951415",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Inspection",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

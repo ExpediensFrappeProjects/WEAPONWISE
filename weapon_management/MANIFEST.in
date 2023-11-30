@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include weapon_management *.css
+recursive-include weapon_management *.csv
+recursive-include weapon_management *.html
+recursive-include weapon_management *.ico
+recursive-include weapon_management *.js
+recursive-include weapon_management *.json
+recursive-include weapon_management *.md
+recursive-include weapon_management *.png
+recursive-include weapon_management *.py
+recursive-include weapon_management *.svg
+recursive-include weapon_management *.txt
+recursive-exclude weapon_management *.pyc

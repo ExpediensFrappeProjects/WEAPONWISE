@@ -1,0 +1,191 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"UXekXSOf2u\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters</span>\",\"col\":12}},{\"id\":\"JH-lisKAQk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Rank and Duty</b></span>\",\"col\":12}},{\"id\":\"WBtFHdIGuD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Rank\",\"col\":3}},{\"id\":\"ZnRHxUJpqG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Duty \",\"col\":3}},{\"id\":\"Bm5A2zvZDT\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"8H3hbjzkLT\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Unit and Storage</b></span>\",\"col\":12}},{\"id\":\"GYG3O2hqHC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Unit\",\"col\":3}},{\"id\":\"HJ42pZ0Ne2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Storage\",\"col\":3}},{\"id\":\"j1FCd5DzzD\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2lhj4GsOMX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Weapon and Ammunition</b></span>\",\"col\":12}},{\"id\":\"06MISyHAXh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Ammunition Category\",\"col\":3}},{\"id\":\"NEDQse6T9s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Weapon Category\",\"col\":3}},{\"id\":\"2iB5LqZwy6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Weapon \",\"col\":3}},{\"id\":\"FVWEKjfBaK\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"NHZYkBLq1d\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Person and Certificate</b></span>\",\"col\":12}},{\"id\":\"-AEN7bCp2d\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add New Person \",\"col\":3}},{\"id\":\"cbR-GLOeLI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Certificate\",\"col\":3}},{\"id\":\"hJMb0p_GVW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"2srLpQKJlH\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}}]",
+ "creation": "2023-10-13 11:14:34.203165",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "menu",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Masters",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 9,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rank Master",
+   "link_count": 0,
+   "link_to": "Rank Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Master",
+   "link_count": 0,
+   "link_to": "Unit Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Category",
+   "link_count": 0,
+   "link_to": "Weapon Category Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Ammunition Category",
+   "link_count": 0,
+   "link_to": "Ammunition Category Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Master",
+   "link_count": 0,
+   "link_to": "Weapon Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificate Master",
+   "link_count": 0,
+   "link_to": "Certificate Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Person Master",
+   "link_count": 0,
+   "link_to": "Person Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Duty Master",
+   "link_count": 0,
+   "link_to": "Duty Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Storage System Master",
+   "link_count": 0,
+   "link_to": "Storage System Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-10-27 11:21:57.281166",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Masters",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Weapon Management",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon ",
+   "link_to": "Weapon Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Rank",
+   "link_to": "Rank Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Duty ",
+   "link_to": "Duty Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Unit",
+   "link_to": "Unit Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Storage",
+   "link_to": "Storage System Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Ammunition Category",
+   "link_to": "Ammunition Category Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon Category",
+   "link_to": "Weapon Category Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Add New Person ",
+   "link_to": "Person Master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Certificate",
+   "link_to": "Certificate Master",
+   "type": "DocType"
+  }
+ ],
+ "title": "Masters"
+}

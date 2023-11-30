@@ -1,0 +1,32 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 10:55:14.218927",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_category"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "label": "Weapon Category",
+   "options": "Weapon Category Master"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-22 10:55:14.218927",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Category Assigned List",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

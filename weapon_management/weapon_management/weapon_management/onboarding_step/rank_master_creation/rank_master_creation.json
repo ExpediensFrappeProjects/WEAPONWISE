@@ -1,0 +1,21 @@
+{
+ "action": "Create Entry",
+ "action_label": "Create Rank",
+ "creation": "2023-10-13 11:24:07.365788",
+ "description": "This is the rank master where we will define various ranks in the system according to the hierarchy",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2023-10-13 11:33:05.904387",
+ "modified_by": "Administrator",
+ "name": "Rank Master Creation",
+ "owner": "Administrator",
+ "reference_document": "Rank Master",
+ "show_form_tour": 0,
+ "show_full_form": 1,
+ "title": "Rank Master Creation",
+ "validate_action": 1
+}

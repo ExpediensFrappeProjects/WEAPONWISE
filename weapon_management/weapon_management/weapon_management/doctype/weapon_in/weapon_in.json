@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 14:14:11.068800",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_details_section",
+  "unit_location",
+  "document_number",
+  "column_break_1w4r1",
+  "document_date",
+  "brows_pdf",
+  "section_break_tbhwo",
+  "weapon_in_details",
+  "other_details_section",
+  "authorised_by",
+  "source",
+  "column_break_qwlck",
+  "authorizer_name",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location",
+   "options": "Unit Master"
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Data",
+   "label": "Document Number"
+  },
+  {
+   "fieldname": "document_date",
+   "fieldtype": "Date",
+   "label": "Document Date"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Source"
+  },
+  {
+   "fieldname": "weapon_in_details",
+   "fieldtype": "Table",
+   "label": "Weapon In Details",
+   "options": "Weapon In Details"
+  },
+  {
+   "fieldname": "authorised_by",
+   "fieldtype": "Link",
+   "label": "Authorised By",
+   "options": "Person Master"
+  },
+  {
+   "fetch_from": "authorised_by.full_name",
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "other_details_section",
+   "fieldtype": "Section Break",
+   "label": "Checkout Details"
+  },
+  {
+   "fieldname": "column_break_qwlck",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_details_section",
+   "fieldtype": "Section Break",
+   "label": "Document Details"
+  },
+  {
+   "fieldname": "column_break_1w4r1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "brows_pdf",
+   "fieldtype": "Attach",
+   "label": "Brows PDF"
+  },
+  {
+   "fieldname": "section_break_tbhwo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Weapon In",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-30 14:24:26.034594",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon In",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

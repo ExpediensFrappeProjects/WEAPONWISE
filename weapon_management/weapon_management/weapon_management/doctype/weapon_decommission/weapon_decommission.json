@@ -1,0 +1,160 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 17:58:34.555406",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_details_section",
+  "weapon_rfid",
+  "weapon_name",
+  "weapon_serial_number",
+  "weapon_butt_number",
+  "column_break_msfem",
+  "weapon_category",
+  "unit_location",
+  "storage_id",
+  "shelf",
+  "section_break_cwkri",
+  "entry_date",
+  "browse_pdf",
+  "column_break_d3den",
+  "decommission_date",
+  "remarks",
+  "section_break_rqaeq",
+  "armourer_id",
+  "column_break_qj9oe",
+  "armourer_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "label": "Weapon Name "
+  },
+  {
+   "fieldname": "column_break_msfem",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entry_date",
+   "fieldtype": "Date",
+   "label": "Entry Date"
+  },
+  {
+   "fieldname": "weapon_serial_number",
+   "fieldtype": "Data",
+   "label": "Weapon Serial Number"
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "label": "Weapon Category ",
+   "options": "Weapon Category Master"
+  },
+  {
+   "fieldname": "weapon_butt_number",
+   "fieldtype": "Data",
+   "label": "Weapon Butt Number "
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location",
+   "options": "Unit Master"
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master"
+  },
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf "
+  },
+  {
+   "fieldname": "decommission_date",
+   "fieldtype": "Date",
+   "label": "Decommission Date "
+  },
+  {
+   "fieldname": "armourer_id",
+   "fieldtype": "Link",
+   "label": "Armourer ID ",
+   "options": "Person Master"
+  },
+  {
+   "fieldname": "column_break_qj9oe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "armourer_id.full_name",
+   "fieldname": "armourer_name",
+   "fieldtype": "Data",
+   "label": "Armourer Name "
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_rqaeq",
+   "fieldtype": "Section Break",
+   "label": "Person Details"
+  },
+  {
+   "fieldname": "section_break_cwkri",
+   "fieldtype": "Section Break",
+   "label": "Decommission"
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "label": "Weapon RFID"
+  },
+  {
+   "fieldname": "weapon_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon Details"
+  },
+  {
+   "fieldname": "browse_pdf",
+   "fieldtype": "Attach",
+   "label": "Browse PDF"
+  },
+  {
+   "fieldname": "column_break_d3den",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-06 10:59:36.551014",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Decommission",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,217 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"Yd-62pjd8R\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\"><b>Transactions</b></span>\",\"col\":12}},{\"id\":\"WhpPQu9mPG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Weapon And Ammunition In</b></span>\",\"col\":12}},{\"id\":\"aVtSo0RrVk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Ammunition In \",\"col\":3}},{\"id\":\"8qXT5jBmQ-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Weapon In\",\"col\":3}},{\"id\":\"jr5YuXf6Sb\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"MydFwtAVKZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Duty Creation</b></span>\",\"col\":12}},{\"id\":\"y2vIHP-QOB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Duty Creation\",\"col\":3}},{\"id\":\"i9tQKhEHhP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"DBKbdty-FF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Issue and Return</b></span>\",\"col\":12}},{\"id\":\"JGJ0LJQoMu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Weapon Issue\",\"col\":5}},{\"id\":\"HlrEX7VgVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Weapon Return\",\"col\":3}},{\"id\":\"z0DgwHYHsn\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1EC4uLAV7i\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Weapon Maintenance</b></span>\",\"col\":12}},{\"id\":\"uikcCW3zLh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Inspection\",\"col\":3}},{\"id\":\"YxKgW-x6S2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Service\",\"col\":3}},{\"id\":\"rrpE1Exy06\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Test Fire\",\"col\":3}},{\"id\":\"IEvc8EWCul\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"kdzGl4CsgX\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Weapon Movement</b></span>\",\"col\":12}},{\"id\":\"UqOnq-Mv7z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Weapon Movement\",\"col\":3}},{\"id\":\"8P0AmR3jui\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"WIM3BEWiY6\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Checkout and Decommission</b></span>\",\"col\":12}},{\"id\":\"Ev7osY62MA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Ammunition Checkout\",\"col\":3}},{\"id\":\"PDZLYunEFA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Weapon Decommission\",\"col\":3}},{\"id\":\"MHROJ2li3g\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"sHaywgsVrI\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>All Transaction Lists</b></span>\",\"col\":12}},{\"id\":\"wr1LtF9DXM\",\"type\":\"card\",\"data\":{\"card_name\":\"Doctypes\",\"col\":4}}]",
+ "creation": "2023-10-13 16:29:56.412610",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "quality",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Transactions",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctypes",
+   "link_count": 10,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon In",
+   "link_count": 0,
+   "link_to": "Weapon In",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Ammunition In ",
+   "link_count": 0,
+   "link_to": "Ammunition In",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Duty Creation",
+   "link_count": 0,
+   "link_to": "Duty Creation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon and Ammunition Issue",
+   "link_count": 0,
+   "link_to": "Weapon and Ammunition Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon and Ammunition Return",
+   "link_count": 0,
+   "link_to": "Weapon and Ammunition Return",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Inspection",
+   "link_count": 0,
+   "link_to": "Weapon Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Service",
+   "link_count": 0,
+   "link_to": "Weapon Service",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Test Fire ",
+   "link_count": 0,
+   "link_to": "Weapon Test Fire",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Unit Movement",
+   "link_count": 0,
+   "link_to": "Weapon Unit Movement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Weapon Decommission",
+   "link_count": 0,
+   "link_to": "Weapon Decommission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-11-23 17:02:08.931613",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Transactions",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Weapon Management",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 3.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon Movement",
+   "link_to": "Weapon Unit Movement",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Weapon Issue",
+   "link_to": "Weapon and Ammunition Issue",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Duty Creation",
+   "link_to": "Duty Creation",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Weapon Return",
+   "link_to": "Weapon and Ammunition Return",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Ammunition In ",
+   "link_to": "Ammunition In",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Inspection",
+   "link_to": "Weapon Inspection",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Service",
+   "link_to": "Weapon Service",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Ammunition Checkout",
+   "link_to": "Ammunition CheckOut",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon In",
+   "link_to": "Weapon In",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon Decommission",
+   "link_to": "Weapon Decommission",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Test Fire",
+   "link_to": "Weapon Test Fire",
+   "type": "DocType"
+  }
+ ],
+ "title": "Transactions"
+}

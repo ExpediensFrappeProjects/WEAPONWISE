@@ -1,0 +1,39 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 18:18:31.333842",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "rank",
+  "number_of_persons"
+ ],
+ "fields": [
+  {
+   "fieldname": "rank",
+   "fieldtype": "Link",
+   "label": "Rank ",
+   "options": "Rank Master"
+  },
+  {
+   "fieldname": "number_of_persons",
+   "fieldtype": "Int",
+   "label": "Number of Persons"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-09-22 18:18:31.333842",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Duty Number of Persons Required",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

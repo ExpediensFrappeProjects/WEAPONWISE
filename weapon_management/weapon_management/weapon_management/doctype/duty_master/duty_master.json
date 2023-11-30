@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "autoname": "field:duty_name",
+ "creation": "2023-09-22 11:19:19.737063",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "duty_name",
+  "duty_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "duty_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Duty Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "duty_description",
+   "fieldtype": "Data",
+   "label": "Duty Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-31 14:26:30.207730",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Duty Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

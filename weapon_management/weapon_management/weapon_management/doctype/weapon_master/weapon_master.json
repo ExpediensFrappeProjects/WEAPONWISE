@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "autoname": "field:weapon_name",
+ "creation": "2023-09-22 14:38:26.953793",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_details_section",
+  "weapon_category",
+  "weapon_name",
+  "ammunition_category",
+  "remarks",
+  "status",
+  "column_break_ypyct",
+  "service_frequency",
+  "inspection_frequency",
+  "test_fire_frequency",
+  "weapon_image"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weapon Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "ammunition_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ammunition Category",
+   "options": "Ammunition Category Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_frequency",
+   "fieldtype": "Select",
+   "label": "Service Frequency (In Months)",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_frequency",
+   "fieldtype": "Select",
+   "label": "Inspection Frequency (In Months)",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test_fire_frequency",
+   "fieldtype": "Select",
+   "label": "Test Fire Frequency (In Months)",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nActive\nInactive",
+   "reqd": 1
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Weapon Category",
+   "options": "Weapon Category Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "weapon_image",
+   "fieldtype": "Attach Image",
+   "label": "Weapon Image"
+  },
+  {
+   "fieldname": "weapon_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon Details"
+  },
+  {
+   "fieldname": "column_break_ypyct",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "image_field": "weapon_image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-26 12:53:43.119135",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

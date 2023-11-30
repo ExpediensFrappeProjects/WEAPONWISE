@@ -1,0 +1,359 @@
+{
+ "actions": [],
+ "autoname": "format:{return_document_number}-{DD}{MM}{YY}-{#####}",
+ "creation": "2023-09-22 17:15:43.700107",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "unit_details_section",
+  "return_document_number",
+  "issue_document_number",
+  "column_break_ek72u",
+  "return_date_and_time",
+  "issue_data_and_time",
+  "column_break_tztwb",
+  "unit_location",
+  "duty_details_section",
+  "duty_code",
+  "duty_name",
+  "duty_location",
+  "column_break_h9riv",
+  "duty_start",
+  "duty_end",
+  "personal_details_section",
+  "personnel_id",
+  "person_name",
+  "column_break_unzau",
+  "rank",
+  "weapon_and_ammunition_details_section",
+  "weapon_rfid",
+  "weapon_category",
+  "weapon_name",
+  "weapon_serial_number",
+  "butt_number",
+  "weapon_storage_id",
+  "weapon_storage_shelf",
+  "column_break_enzox",
+  "ammunition_rfid",
+  "ammunition_category",
+  "box_number",
+  "available_quantity",
+  "returned",
+  "quantity_used",
+  "round_per_box",
+  "ammunition_storage_id",
+  "ammunition_storage_shelf",
+  "checkout_details_section",
+  "authorized_by",
+  "armourer_id",
+  "column_break_rrlvt",
+  "authorizer_name",
+  "armourer_name",
+  "section_break_qdgqc",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Unit Details"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location ",
+   "options": "Unit Master"
+  },
+  {
+   "fieldname": "column_break_ek72u",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "issue_document_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Issue Document Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_tztwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "issue_data_and_time",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue Data and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "return_document_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Return Document Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "return_date_and_time",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Return Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_details_section",
+   "fieldtype": "Section Break",
+   "label": "Duty Details"
+  },
+  {
+   "fieldname": "duty_location",
+   "fieldtype": "Data",
+   "label": "Duty Location",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "personnel_id",
+   "fieldtype": "Link",
+   "label": "Personnel ID",
+   "options": "Person Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "label": "Person Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rank",
+   "fieldtype": "Link",
+   "label": "Rank",
+   "options": "Rank Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_and_ammunition_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon and Ammunition Details"
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Link",
+   "label": "Weapon Category",
+   "options": "Weapon Category Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "label": "Weapon Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_serial_number",
+   "fieldtype": "Data",
+   "label": "Weapon Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "butt_number",
+   "fieldtype": "Data",
+   "label": "Butt Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "label": "Weapon RFID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_storage_id",
+   "fieldtype": "Link",
+   "label": "Weapon Storage ID ",
+   "options": "Storage System Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_storage_shelf",
+   "fieldtype": "Data",
+   "label": "Weapon Storage Shelf",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_h9riv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ammunition_rfid",
+   "fieldtype": "Data",
+   "label": "Ammunition RFID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "box_number",
+   "fieldtype": "Data",
+   "label": "Box Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "returned",
+   "fieldtype": "Int",
+   "label": "Returned"
+  },
+  {
+   "fieldname": "round_per_box",
+   "fieldtype": "Data",
+   "label": "Round Per Box",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_storage_id",
+   "fieldtype": "Link",
+   "label": "Ammunition Storage ID ",
+   "options": "Storage System Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_storage_shelf",
+   "fieldtype": "Data",
+   "label": "Ammunition Storage Shelf",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkout_details_section",
+   "fieldtype": "Section Break",
+   "label": "Checkout Details"
+  },
+  {
+   "fieldname": "authorized_by",
+   "fieldtype": "Link",
+   "label": "Authorized By",
+   "options": "Person Master"
+  },
+  {
+   "fieldname": "armourer_id",
+   "fieldtype": "Link",
+   "label": "Armourer ID",
+   "options": "Person Master"
+  },
+  {
+   "fieldname": "column_break_rrlvt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "authorizer_name",
+   "fieldtype": "Data",
+   "label": "Authorizer Name "
+  },
+  {
+   "fieldname": "armourer_name",
+   "fieldtype": "Data",
+   "label": "Armourer Name"
+  },
+  {
+   "fieldname": "section_break_qdgqc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_unzau",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_enzox",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ammunition_category",
+   "fieldtype": "Link",
+   "label": "Ammunition Category",
+   "options": "Ammunition Category Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_start",
+   "fieldtype": "Data",
+   "label": "Duty Start Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "available_quantity",
+   "fieldtype": "Int",
+   "label": "Aavailable Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_end",
+   "fieldtype": "Data",
+   "label": "Duty End  Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_name",
+   "fieldtype": "Link",
+   "label": "Duty Name",
+   "options": "Duty Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "quantity_used",
+   "fieldtype": "Int",
+   "label": "Quantity Used",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_code",
+   "fieldtype": "Data",
+   "label": "Duty Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Weapon and Ammunition Return",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-26 18:12:05.534333",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon and Ammunition Return",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

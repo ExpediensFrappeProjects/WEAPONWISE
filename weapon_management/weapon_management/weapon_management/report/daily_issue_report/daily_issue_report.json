@@ -1,0 +1,27 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-10-16 16:43:19.016624",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2023-10-18 15:03:13.947597",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Daily Issue Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n    twaai.issue_document_number AS \"Doc No.\",\n    tum.unit_id AS \"UNIT ID\",\n    CONCAT_WS('-', tpm.personnel_id, tpm.full_name) AS \"Personnel ID\",\n    trm.rank_id AS \"Personnel Rank\",\n    tum.unit_location AS \"Unit Location\",\n    twaai.weapon_serial_number AS \"Weapon Serial Number\",\n    twaai.butt_number AS \"Weapon Butt Number\",\n    twaai.weapon_name,\n    tacm.ammunition_category AS \"Ammunition Type\",\n    twaai.box_number AS \"Ammunition Box ID\"\nFROM \"tabWeapon and Ammunition Issue\" twaai\nINNER JOIN \"tabUnit Master\" tum ON tum.\"name\" = twaai.unit_location\nINNER JOIN \"tabPerson Master\" tpm ON tpm.\"name\" = twaai.personnel_id\nINNER JOIN \"tabRank Master\" trm ON trm.\"name\"  = twaai.\"rank\"\nINNER JOIN \"tabAmmunition Category Master\" tacm ON tacm.\"name\" = twaai.ammunition_category;",
+ "ref_doctype": "Weapon and Ammunition Issue",
+ "report_name": "Daily Issue Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

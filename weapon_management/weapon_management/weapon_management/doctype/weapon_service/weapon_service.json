@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-09-22 18:05:25.859344",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "weapon_details_section",
+  "weapon_rfid",
+  "weapon_name",
+  "weapon_serial_number",
+  "weapon_category",
+  "column_break_wyjyu",
+  "weapon_butt_number",
+  "unit_location",
+  "storage_id",
+  "shelf",
+  "service_details_section",
+  "due_date",
+  "service_date",
+  "result",
+  "browse_pdf",
+  "column_break_el5tt",
+  "issue_found",
+  "comments",
+  "personnel_details_section",
+  "inspected_by",
+  "column_break_ciqc6",
+  "inspector_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "weapon_details_section",
+   "fieldtype": "Section Break",
+   "label": "Weapon Details "
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location ",
+   "options": "Unit Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_name",
+   "fieldtype": "Data",
+   "label": "Weapon Name ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_serial_number",
+   "fieldtype": "Data",
+   "label": "Weapon Serial Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_category",
+   "fieldtype": "Data",
+   "label": "Weapon Category ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_butt_number",
+   "fieldtype": "Data",
+   "label": "Weapon Butt Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_details_section",
+   "fieldtype": "Section Break",
+   "label": "Service Details"
+  },
+  {
+   "fieldname": "service_date",
+   "fieldtype": "Date",
+   "label": "Service Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "label": "Result",
+   "options": "\nPass\nFail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issue_found",
+   "fieldtype": "Small Text",
+   "label": "Issue Found"
+  },
+  {
+   "fieldname": "comments",
+   "fieldtype": "Small Text",
+   "label": "Comments"
+  },
+  {
+   "fieldname": "personnel_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personnel Details"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "options": "Person Master",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "inspected_by.full_name",
+   "fieldname": "inspector_name",
+   "fieldtype": "Data",
+   "label": "Inspector Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weapon RFID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wyjyu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "browse_pdf",
+   "fieldtype": "Attach",
+   "label": "Browse PDF"
+  },
+  {
+   "fieldname": "column_break_el5tt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ciqc6",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-18 14:38:59.760533",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Weapon Service",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

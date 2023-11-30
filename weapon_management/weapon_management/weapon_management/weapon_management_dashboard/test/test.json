@@ -1,0 +1,37 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Duty Creation Stats",
+   "width": "Full"
+  },
+  {
+   "chart": "Issue Documents",
+   "width": "Half"
+  },
+  {
+   "chart": "Return Documents",
+   "width": "Half"
+  },
+  {
+   "chart": "Weapon Inventory",
+   "width": "Half"
+  },
+  {
+   "chart": "Ammunition Inventory",
+   "width": "Half"
+  }
+ ],
+ "creation": "2023-11-01 12:24:47.877132",
+ "dashboard_name": "Test",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-11-01 13:17:58.172981",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Test",
+ "owner": "Administrator"
+}

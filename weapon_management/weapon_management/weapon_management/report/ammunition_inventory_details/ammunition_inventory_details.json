@@ -1,0 +1,26 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-11-21 16:12:35.390686",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2023-11-21 16:32:31.428045",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Ammunition Inventory Details",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Ammunition In",
+ "report_name": "Ammunition Inventory Details",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}
