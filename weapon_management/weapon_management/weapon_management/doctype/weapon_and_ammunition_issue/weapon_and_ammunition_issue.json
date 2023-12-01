@@ -66,6 +66,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Issue Document Number",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -349,7 +350,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-31 15:10:20.963097",
+ "modified": "2023-11-30 18:30:39.903484",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Issue",

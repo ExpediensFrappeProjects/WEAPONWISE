@@ -1,3 +1,19 @@
+frappe.ui.form.on('Weapon and Ammunition Issue',{
+    onload : function(frm){
+        if (frm.is_new){
+            frappe.call({
+                method:'weapon_management.weapon_management.doctype.weapon_and_ammunition_issue.weapon_and_ammunition_issue.get_issue_doc_num',
+                callback: function(response){
+                    var doc_num = response.message;
+                    frm.set_value("issue_document_number",doc_num)
+                }
+            })
+        }
+    }
+})
+
+
+
 frappe.ui.form.on('Weapon and Ammunition Issue', {
     refresh: function (frm) {
         addCustomIconButton(frm, 'weapon_rfid');
