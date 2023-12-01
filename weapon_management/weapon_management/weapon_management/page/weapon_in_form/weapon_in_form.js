@@ -30,6 +30,20 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         fieldname: 'source'
     });
 
+    let authorisedBy = page.add_field({
+        label: "Authorised By",
+        fieldtype: 'Select',
+        fieldname: 'authorised_by',
+        options: []
+    });
+
+    let authorizerName = page.add_field({
+        label: "Authorizer Name",
+        fieldtype: 'Data',
+        fieldname: 'authorizer_name',
+        read_only: true
+    });
+
     let weaponName = page.add_field({
         label: "Weapon Name",
         fieldtype: 'Select',
@@ -100,6 +114,75 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         }
     });
 
+    let saveButton = page.add_field({
+        label: "Save",
+        fieldtype: 'Button',
+        fieldname: 'save',
+        click: function () {
+            if (validateFields()) {
+                const docValues = {
+                    unit_location: unitLocation.get_value(),
+                    document_number: documentNumber.get_value(),
+                    document_date: datarangeField.get_value(),
+                    source: source.get_value(),
+                    weapon_category: weaponCategory.get_value(),
+                    quantity: quantity.get_value()
+                };
+    
+                const detailsTable = tableContainer.find('table');
+                const detailsData = [];
+    
+                detailsTable.find('tbody tr').each(function () {
+                    const row = $(this);
+                    const rowData = {
+                        rfid_tag: row.find('td:nth-child(3) select').val(),
+                        weapon_category: row.find('td:nth-child(1) input').val(),
+                        weapon_name: row.find('td:nth-child(2) input').val(),
+                        unit: row.find('td:nth-child(4) input').val(),
+                        serial_number: row.find('td:nth-child(5) input').val(),
+                        butt_number: row.find('td:nth-child(6) input').val(),
+                        date_acquired: datarangeField.get_value(),
+                        storage_id: row.find('td:nth-child(7) select').val(),
+                        shelf: row.find('td:nth-child(8) select').val(),
+                        status: 'Available', 
+                        docstatus:1,
+                        unit_location: unitLocation.get_value() 
+                    };
+                    detailsData.push(rowData);
+                });
+    
+                saveDocument(docValues, detailsData);
+            } else {
+                frappe.msgprint(__('Please Fill In All Required Fields.'));
+            }
+        }
+    });
+
+
+    function saveDocument(docValues, detailsData) {
+        var isConfirmed = window.confirm('Confirm to Save Document');
+        if (!isConfirmed) {
+            return;
+        }
+        frappe.call({
+            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.save_weapon_in_document',
+            args: {
+                doc_values: docValues,
+                details_data: detailsData
+            },
+            callback: function (response) {
+                if (response.message) {
+                    frappe.msgprint(__('Document saved successfully.'));
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    frappe.msgprint(__('Failed to save document.'));
+                }
+            }
+        });
+    }
+    
     function fetchUnitLocation() {
         frappe.call({
             method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_unit_location',
@@ -111,6 +194,50 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         });
     }
     fetchUnitLocation();
+
+    unitLocation.$input.on('change', function () {
+        var selectedUnitLocation = unitLocation.get_value();
+        
+        if (selectedUnitLocation) {
+            fetchAutorizedBy(selectedUnitLocation);
+            fetchStorageID(selectedUnitLocation);
+        }
+    });
+    
+
+    function fetchAutorizedBy(selectedUnitLocation) {
+        frappe.call({
+            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_authorised_by',
+            args:{
+                unitLocation:selectedUnitLocation
+            },
+            callback: function (response) {
+                var authorisedByOptions = response.message;
+                authorisedBy.df.options = authorisedByOptions;
+                authorisedBy.refresh();
+            }
+        });
+    
+        authorisedBy.$input.on('change', function () {
+            var selectedAuthorisedBy = authorisedBy.get_value();
+            fetchAuthorizerName(selectedAuthorisedBy);
+        });
+    }
+
+    
+    function fetchAuthorizerName(selectedAuthorisedBy) {
+        frappe.call({
+            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_authorizer_name',
+            args: {
+                authorizedBy: selectedAuthorisedBy
+            },
+            callback: function (response) {
+                var authorizerNameValue = response.message;
+                authorizerName.set_value(authorizerNameValue);
+            }
+        });
+    }
+    
 
     function fetchWeaponName() {
         frappe.call({
@@ -141,11 +268,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             }
         });
     }
-
-    unitLocation.$input.on('change', function () {
-        var selectedUnitLocation = unitLocation.get_value();
-        fetchStorageID(selectedUnitLocation);
-    });
 
     var storageIDS;
 
@@ -243,7 +365,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                     
                     inputField.on('change', function () {
                         const selectedStorageID = $(this).val();
-                        fetchShelf(selectedStorageID, row);  // Pass the row element to fetchShelf
+                        fetchShelf(selectedStorageID, row); 
                     });
                 }
                  else if (j === 7) {
