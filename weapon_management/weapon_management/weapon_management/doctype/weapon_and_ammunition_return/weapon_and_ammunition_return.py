@@ -59,3 +59,17 @@ def get_armourer(unitLocation):
 def get_person_name(personID):
     personName = frappe.get_value("Person Master", {"name": personID}, "full_name")
     return personName
+
+@frappe.whitelist()
+def get_return_doc_num():
+    doc = frappe.db.get_value("Weapon and Ammunition Return", "return_document_number")
+    
+    if doc:
+        prefix = "Return"
+        current_return_number = int(doc[len(prefix):])
+        next_return_number = current_return_number + 1
+        return_doc_num = f"{prefix}{next_return_number}"
+    else:
+        return_doc_num = "Return1"
+
+    return return_doc_num
