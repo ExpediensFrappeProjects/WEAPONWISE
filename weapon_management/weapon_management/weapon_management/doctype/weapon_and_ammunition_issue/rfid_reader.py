@@ -89,7 +89,6 @@ rfid_listener_instance = RFIDListener()
 def get_latest_rfid_data():
     return jsonify({'latest_rfid_data': rfid_listener_instance.latest_rfid_data})
 
-
 if __name__ == '__main__':
     # Start RFID listener in a separate thread
     import threading
