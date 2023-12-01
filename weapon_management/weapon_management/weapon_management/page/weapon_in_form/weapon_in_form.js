@@ -64,9 +64,8 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                     const quantityValue = quantity.get_value();
                     const selectedWeaponName = weaponName.get_value();
                     const selectedWeaponCategory = weaponCategory.get_value();
-
                     if (!tableContainer.find('table').length) {
-                        createModernTable(tableContainer, ['Weapon Category', 'Weapon Name', 'RFID Tag', 'Unit', 'Serial Number', 'Butt Number', 'Date Acquired', 'Storage ID', 'Shelf'], quantityValue, selectedWeaponCategory, selectedWeaponName);
+                        createModernTable(tableContainer, ['Weapon Category', 'Weapon Name', 'RFID Tag', 'Unit', 'Serial Number', 'Butt Number', 'Storage ID', 'Shelf'], quantityValue, selectedWeaponCategory, selectedWeaponName);
                     } else {
                         addRowsToTable(tableContainer, quantityValue, selectedWeaponCategory, selectedWeaponName);
                     }
@@ -111,7 +110,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             }
         });
     }
-
     fetchUnitLocation();
 
     function fetchWeaponName() {
@@ -129,7 +127,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             fetchWeaponCategory(selectedWeaponName);
         });
     }
-
     fetchWeaponName();
 
     function fetchWeaponCategory(selectedWeaponName) {
@@ -178,16 +175,18 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             }
         });
     }
-    
-    function setShelfOptions(rowElement, shelfOptions) {
-        const shelfField = rowElement.find('select[data-fieldname="shelf"]');
-        shelfField.empty(); 
-    
-        $('<option value="">Select Shelf</option>').appendTo(shelfField);
-    
-        for (let i = 0; i < shelfOptions.length; i++) {
-            $('<option value="' + shelfOptions[i] + '">' + shelfOptions[i] + '</option>').appendTo(shelfField);
+
+    function addSelectToRow(rowElement, storageIDS) {
+        const selectField = $('<select class="form-control" data-fieldname="shelf"></select>');
+        $('<option value="">Select Shelf</option>').appendTo(selectField);
+        for (let k = 0; k < storageIDS.length; k++) {
+            $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(selectField);
         }
+        rowElement.find('td:nth-child(9)').html(selectField);
+    }
+    
+    function setShelfOptions(rowElement, storageIDS) {
+        addSelectToRow(rowElement, storageIDS);
     }
 
     function createModernTable(container, columns, numRows, selectedWeaponCategory, selectedWeaponName) { 
@@ -203,71 +202,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         }
     
         let tbody = $('<tbody></tbody>').appendTo(table);
-        for (let i = 0; i < numRows; i++) {
-            let row = $('<tr></tr>').appendTo(tbody);
-    
-            $('<td style="text-align: center;">' + (i + 1) + '</td>').appendTo(row);
-    
-            for (let j = 0; j < columns.length; j++) {
-                let inputField;
-    
-                if (columns[j] === 'Storage ID') {
-                    inputField = $('<select class="form-control"></select>');
-                    $('<option value="">Select Storage ID</option>').appendTo(inputField);
-                    for (let k = 0; k < storageIDS.length; k++) {
-                        $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(inputField);
-                    }
-    
-                    inputField.on('change', function () {
-                        const selectedStorageID = $(this).val();
-                        fetchShelf(selectedStorageID, row);
-                    });
-                } else if (columns[j] === 'Shelf') {
-                    inputField = $('<select class="form-control"></select>');
-                    $('<option value="">Select Shelf</option>').appendTo(inputField);
-                    if (shelfOptions) {
-                        for (let k = 0; k < shelfOptions.length; k++) {
-                            $('<option value="' + shelfOptions[k] + '">' + shelfOptions[k] + '</option>').appendTo(inputField);
-                        }
-                    }
-                } else if (columns[j] === 'Date Acquired') {
-                    inputField = $('<div class="input-group date datepicker" data-provide="datepicker"></div>');
-                    let dateInput = $('<input type="text" class="form-control">').appendTo(inputField);
-                    let dateButton = $('<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>').appendTo(inputField);
-    
-                    dateInput.datepicker({
-                        format: 'yyyy-mm-dd',
-                        autoclose: true,
-                    });
-    
-                    dateButton.click(function () {
-                        dateInput.datepicker('show');
-                    });
-                } else {
-                    inputField = $('<input type="text" class="form-control">');
-    
-                    if (columns[j] === 'Weapon Category' && selectedWeaponCategory) {
-                        inputField.val(selectedWeaponCategory);
-                        inputField.prop('readonly', true);
-                    }
-    
-                    if (columns[j] === 'Weapon Name' && selectedWeaponName) {
-                        inputField.val(selectedWeaponName);
-                        inputField.prop('readonly', true);
-                    }
-                }
-    
-                $('<td></td>').append(inputField).appendTo(row);
-            }
-
-            let clearButton = $('<button class="btn btn-danger">Clear</button>');
-            clearButton.click(function () {
-                clearRow(row);
-            });
-            
-            $('<td></td>').append(clearButton).appendTo(row);
-        }
-
+        addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName);
         return table;
     }
 
@@ -295,20 +230,23 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     
             $('<td style="text-align: center;">' + currentSerialNumber + '</td>').appendTo(row);
     
-            for (let j = 0; j < 9; j++) {
+            for (let j = 0; j < 8; j++) {
                 let inputField;
     
-                if (j === 7) {
+                if (j === 6) {
                     inputField = $('<select class="form-control"></select>');
                     $('<option value="">Select Storage ID</option>').appendTo(inputField);
+                    
                     for (let k = 0; k < storageIDS.length; k++) {
                         $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(inputField);
                     }
+                    
                     inputField.on('change', function () {
                         const selectedStorageID = $(this).val();
-                        fetchShelf(selectedStorageID);
+                        fetchShelf(selectedStorageID, row);  // Pass the row element to fetchShelf
                     });
-                } else if (j === 8) {
+                }
+                 else if (j === 7) {
                     inputField = $('<select class="form-control"></select>');
                     $('<option value="">Select Shelf</option>').appendTo(inputField);
                 } else {
