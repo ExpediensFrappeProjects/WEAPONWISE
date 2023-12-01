@@ -5,9 +5,24 @@ import frappe
 from datetime import datetime
 from frappe.utils import now_datetime
 from frappe.model.document import Document
+from frappe import _
 
 
 class WeaponandAmmunitionIssue(Document):
+
+    # def autoname(self):
+    #     # Get the current value of the autoname counter
+    #     current_count = frappe.get_single('Auto Repeat').get_autoname(self.doctype)
+
+    #     # Set the autoname for the 'issue_document_number' field
+    #     self.issue_document_number = f"Issue-{current_count}"
+    #     self.name = f"Issue-{current_count}"
+
+    #     # Increment the autoname counter for the next document
+    #     frappe.get_single('Auto Repeat').increment_series(self.doctype)
+
+
+
     def before_submit(self):
         weaponRFID = self.weapon_rfid
         frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Issued"})
@@ -102,3 +117,20 @@ def get_armourer(unitLocation):
 def get_person_name(person_id):
     personName = frappe.get_value("Person Master", {"name": person_id}, "full_name")
     return personName
+
+@frappe.whitelist()
+def get_issue_doc_num():
+    doc = frappe.db.get_value("Weapon and Ammunition Issue", "issue_document_number")
+    
+    if doc:
+        prefix = "Issue"
+        current_issue_number = int(doc[len(prefix):])
+        next_issue_number = current_issue_number + 1
+        issue_doc_num = f"{prefix}{next_issue_number}"
+    else:
+        issue_doc_num = "Issue1"
+
+    return issue_doc_num
+
+
+
