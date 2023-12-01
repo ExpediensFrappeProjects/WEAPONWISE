@@ -7,7 +7,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 class RFIDListener:
-    def __init__(self, server_ip='192.168.10.124', server_port=12346, allowed_ip='192.168.10.107'):
+    def __init__(self, server_ip='192.168.10.21', server_port=12346, allowed_ip='192.168.10.107'):
         self.server_ip = server_ip
         self.server_port = server_port
     
