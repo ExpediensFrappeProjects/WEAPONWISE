@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Weapon and Ammunition Return',{
     onload : function(frm){
-        if (frm.is_new){
+        if (frm.is_new()){
             frappe.call({
                 method:'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_return_doc_num',
                 callback: function(response){

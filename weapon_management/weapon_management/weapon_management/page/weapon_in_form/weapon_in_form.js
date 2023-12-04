@@ -86,7 +86,8 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                     const selectedWeaponName = weaponName.get_value();
                     const selectedWeaponCategory = weaponCategory.get_value();
                     if (!tableContainer.find('table').length) {
-                        createModernTable(tableContainer, ['Weapon Category', 'Weapon Name', 'RFID Tag', 'Unit', 'Serial Number', 'Butt Number', 'Storage ID', 'Shelf'], quantityValue, selectedWeaponCategory, selectedWeaponName);
+                        let columnWidths = [12, 10, 25, 6, 12, 8, 12, 12]; // Using percentages instead of pixels
+                        createModernTable(tableContainer, ['Weapon Category', 'Weapon Name', 'RFID Tag', 'Unit', 'Serial Number', 'Butt Number', 'Storage ID', 'Shelf'], quantityValue, selectedWeaponCategory, selectedWeaponName, columnWidths);
                     } else {
                         addRowsToTable(tableContainer, quantityValue, selectedWeaponCategory, selectedWeaponName);
                     }
@@ -121,53 +122,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             addFlag = true;
         }
     });
-
-    // let saveButton = page.add_field({
-    //     label: "Save",
-    //     fieldtype: 'Button',
-    //     fieldname: 'save',
-    //     click: function () {
-    //         if (validateFields()) {
-    //             const docValues = {
-    //                 unit_location: unitLocation.get_value(),
-    //                 document_number: documentNumber.get_value(),
-    //                 document_date: documentDate.get_value(),
-    //                 source: source.get_value(),
-    //                 weapon_category: weaponCategory.get_value(),
-    //                 quantity: quantity.get_value(),
-    //                 authorised_by: authorisedBy.get_value(),
-    //                 authorizer_name: authorizerName.get_value(),
-    //                 docstatus:1
-    //             };
-    
-    //             const detailsTable = tableContainer.find('table');
-    //             const detailsData = [];
-    
-    //             detailsTable.find('tbody tr').each(function () {
-    //                 const row = $(this);
-    //                 const rowData = {
-    //                     weapon_category: row.find('td:nth-child(2) input').val(),
-    //                     weapon_name: row.find('td:nth-child(3) input').val(),
-    //                     rfid_tag: row.find('td:nth-child(4) input').val(),
-    //                     unit: row.find('td:nth-child(5) input').val(),
-    //                     serial_number: row.find('td:nth-child(6) input').val(),
-    //                     butt_number: row.find('td:nth-child(7) input').val(),
-    //                     storage_id: row.find('td:nth-child(8) select').val(),
-    //                     shelf: row.find('td:nth-child(9) select').val(),
-    //                     date_acquired: acquiredDate.get_value(),
-    //                     status: 'Available', 
-    //                     unit_location: unitLocation.get_value() 
-    //                 };
-    //                 detailsData.push(rowData);
-                    
-    //             });
-    //             saveDocument(docValues, detailsData);
-    //         } else {
-    //             frappe.msgprint(__('Please Fill In All Required Fields.'));
-    //         }
-    //     }
-    // });
-
 
     function saveDocument(docValues, detailsData) {
         var isConfirmed = window.confirm('Confirm to Save Document');
@@ -321,22 +275,42 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         addSelectToRow(rowElement, storageIDS);
     }
 
-    function createModernTable(container, columns, numRows, selectedWeaponCategory, selectedWeaponName) { 
+    // function createModernTable(container, columns, numRows, selectedWeaponCategory, selectedWeaponName) { 
+    //     let table = $('<table class="table table-bordered table-striped"></table>').appendTo(container);
+    //     table.css('margin-top', '14px');
+    
+    //     let thead = $('<thead class="thead-dark"></thead>').appendTo(table);
+    //     let headerRow = $('<tr></tr>').appendTo(thead);
+    //     $('<th style="text-align: center;">S.No</th>').appendTo(headerRow);
+    
+    //     for (let j = 0; j < columns.length; j++) {
+    //         $('<th style="text-align: center;">' + columns[j] + '</th>').appendTo(headerRow);
+    //     }
+    
+    //     let tbody = $('<tbody></tbody>').appendTo(table);
+    //     addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName);
+    //     return table;
+    // }
+
+    function createModernTable(container, columns, numRows, selectedWeaponCategory, selectedWeaponName, columnWidths) {
         let table = $('<table class="table table-bordered table-striped"></table>').appendTo(container);
         table.css('margin-top', '14px');
     
         let thead = $('<thead class="thead-dark"></thead>').appendTo(table);
         let headerRow = $('<tr></tr>').appendTo(thead);
-        $('<th style="text-align: center;">S.No</th>').appendTo(headerRow);
+        $('<th style="text-align: center; width: 5%;">S.No</th>').appendTo(headerRow); // Use a percentage for the default width
     
         for (let j = 0; j < columns.length; j++) {
-            $('<th style="text-align: center;">' + columns[j] + '</th>').appendTo(headerRow);
+            let columnWidth = columnWidths && columnWidths[j] ? columnWidths[j] + '%' : ''; // Use a percentage or leave it empty
+            $('<th style="text-align: center; width: ' + columnWidth + ';">' + columns[j] + '</th>').appendTo(headerRow);
         }
     
         let tbody = $('<tbody></tbody>').appendTo(table);
         addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName);
         return table;
     }
+    
+    
 
     function getLastSerialNumber() {
         let table = tableContainer.find('table');
@@ -349,132 +323,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         let lastSerialNumber = parseInt(lastRow.find('td:first').text(), 10);
         return isNaN(lastSerialNumber) ? 0 : lastSerialNumber;
     }
-
-//     let saveButtonCreated = false;
-
-//     function addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName) {
-//         let table = container.find('table');
-//         let tbody = table.find('tbody');
-//         let startingSerialNumber = getLastSerialNumber() + 1;
-    
-//         for (let i = 0; i < numRows; i++) {
-//             let currentSerialNumber = startingSerialNumber + i;
-    
-//             let row = $('<tr></tr>').appendTo(tbody);
-    
-//             $('<td style="text-align: center;">' + currentSerialNumber + '</td>').appendTo(row);
-    
-//             for (let j = 0; j < 8; j++) {
-//                 let inputField;
-    
-//                 if (j === 6) {
-//                     inputField = $('<select class="form-control"></select>');
-//                     $('<option value="">Select Storage ID</option>').appendTo(inputField);
-                    
-//                     for (let k = 0; k < storageIDS.length; k++) {
-//                         $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(inputField);
-//                     }
-                    
-//                     inputField.on('change', function () {
-//                         const selectedStorageID = $(this).val();
-//                         fetchShelf(selectedStorageID, row); 
-//                     });
-//                 }else if (j === 7) {
-//                     inputField = $('<select class="form-control"></select>');
-//                     $('<option value="">Select Shelf</option>').appendTo(inputField);
-
-//                 }else if(j === 3){
-//                     inputField = $('<select class="form-control"></select>');
-//                     $('<option value="">Select Unit</option>').appendTo(inputField);
-
-//                     const staticOptions = ['Pc'];
-
-//                     for (let option of staticOptions) {
-//                         $('<option value="' + option + '">' + option + '</option>').appendTo(inputField);
-//                     }
-
-//                 }else {
-//                     inputField = $('<input type="text" class="form-control">');
-    
-//                     if (j === 0 && selectedWeaponCategory) {
-//                         inputField.val(selectedWeaponCategory);
-//                         inputField.prop('readonly', true);
-//                     }
-    
-//                     if (j === 1 && selectedWeaponName) {
-//                         inputField.val(selectedWeaponName);
-//                         inputField.prop('readonly', true);
-//                     }
-//                 }
-    
-//                 $('<td></td>').append(inputField).appendTo(row);
-//             }
-    
-//             let clearButton = $('<button class="btn btn-danger">Clear</button>');
-//             clearButton.click(function () {
-//                 clearRow(row);
-//             });
-    
-//             $('<td></td>').append(clearButton).appendTo(row);
-//         }
-
-        
-//         if (!saveButtonCreated) {
-//             let saveButton = $('<button>')
-//                 .addClass('btn btn-success')
-//                 .text('Save')
-//                 .on('click', function() {
-                    
-//                     if (validateFields()) {
-//                         const docValues = {
-//                             unit_location: unitLocation.get_value(),
-//                             document_number: documentNumber.get_value(),
-//                             document_date: documentDate.get_value(),
-//                             source: source.get_value(),
-//                             weapon_category: weaponCategory.get_value(),
-//                             quantity: quantity.get_value(),
-//                             authorised_by: authorisedBy.get_value(),
-//                             authorizer_name: authorizerName.get_value(),
-//                             docstatus: 1
-//                         };
-
-//                         const detailsTable = tableContainer.find('table');
-//                         const detailsData = [];
-
-//                         detailsTable.find('tbody tr').each(function () {
-//                             const row = $(this);
-//                             const rowData = {
-//                                 weapon_category: row.find('td:nth-child(2) input').val(),
-//                                 weapon_name: row.find('td:nth-child(3) input').val(),
-//                                 rfid_tag: row.find('td:nth-child(4) input').val(),
-//                                 unit: row.find('td:nth-child(5) input').val(),
-//                                 serial_number: row.find('td:nth-child(6) input').val(),
-//                                 butt_number: row.find('td:nth-child(7) input').val(),
-//                                 storage_id: row.find('td:nth-child(8) select').val(),
-//                                 shelf: row.find('td:nth-child(9) select').val(),
-//                                 date_acquired: acquiredDate.get_value(),
-//                                 status: 'Available',
-//                                 unit_location: unitLocation.get_value()
-//                             };
-//                             detailsData.push(rowData);
-//                         });
-
-//                         saveDocument(docValues, detailsData);
-//                     } else {
-//                         frappe.msgprint(__('Please Fill In All Required Fields.'));
-//                     }
-//                 });
-
-//             page.body.append(saveButton);
-//             saveButtonCreated = true;
-
-//             }
-
-//         }
-//     function clearRow(row) {
-//         row.find('input[type="text"]').not('[readonly]').val('');
-//         row.find('select.form-control').val('').trigger('change');
-//     }
 
         let saveButtonCreated = false;
 
