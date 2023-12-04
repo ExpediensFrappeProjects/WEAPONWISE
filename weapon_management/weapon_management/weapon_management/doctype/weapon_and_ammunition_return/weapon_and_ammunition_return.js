@@ -1,6 +1,60 @@
 // Copyright (c) 2023, Expedien and contributors
 // For license information, please see license.txt
 
+frappe.ui.form.on('Weapon and Ammunition Return',{
+    onload : function(frm){
+        if (frm.is_new){
+            frappe.call({
+                method:'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_return_doc_num',
+                callback: function(response){
+                    var doc_num = response.message;
+                    frm.set_value("return_document_number",doc_num)
+                }
+            })
+        }
+    }
+})
+frappe.ui.form.on('Weapon and Ammunition Return', {
+    refresh: function (frm) {
+        addCustomIconButton(frm, 'weapon_rfid');
+        addCustomIconButton(frm, 'ammunition_rfid');
+        // addCustomIconButton(frm, 'personnel_rfid');
+    }
+});
+function addCustomIconButton(frm, fieldname) {
+    var inputWrapper = frm.fields_dict[fieldname].$wrapper;
+
+    inputWrapper.css('position', 'relative');
+    inputWrapper.find('.control-input').append(
+        `<button class="btn btn-default btn-xs btn-icon custom-icon-button" style="position: absolute; right: .1%; top: 7%;">
+            <i class="fa fa-rss"></i>
+        </button>`
+    );
+
+    inputWrapper.find('.custom-icon-button').on('click', function () {
+        // Update the URL to match your Flask server
+        frm.set_value(fieldname, '');
+
+        frappe.msgprint("Recieving Response from RFID Reader.......")
+        setTimeout(function () {
+            frappe.call({
+                method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_issue.get_rfid_latest.get_latest_rfid_data',
+                args: {},
+                callback: function (response) {
+                    // Extract the value of the 'latest_rfid_data' property
+                    var latestRFIDData = response.message.latest_rfid_data;
+            
+                    // Update the form field or display the information as needed
+                    frm.set_value(fieldname, latestRFIDData);
+                    // frappe.msgprint("Received response from Application: " + latestRFIDData);
+                }
+            });
+            
+        }, 2000);
+    });
+}
+
+
 frappe.ui.form.on('Weapon and Ammunition Return', {
     weapon_rfid: function(frm) {
 		frm.set_value('issue_document_number','')

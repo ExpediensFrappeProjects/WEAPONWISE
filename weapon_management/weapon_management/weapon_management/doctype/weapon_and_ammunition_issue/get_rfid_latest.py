@@ -6,7 +6,7 @@ import frappe
 
 @frappe.whitelist()
 def get_latest_rfid_data():
-    url = "http://192.168.10.124:5000/get_latest_rfid_data"
+    url = "http://192.168.10.21:5000/get_latest_rfid_data"
 
     try:
         response = requests.get(url)

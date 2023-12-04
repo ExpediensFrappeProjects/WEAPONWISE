@@ -47,7 +47,7 @@ function addCustomIconButton(frm, fieldname) {
             
                     // Update the form field or display the information as needed
                     frm.set_value(fieldname, latestRFIDData);
-                    frappe.msgprint("Received response from Application: " + latestRFIDData);
+                    // frappe.msgprint("Received response from Application: " + latestRFIDData);
                 }
             });
             
@@ -214,9 +214,10 @@ frappe.ui.form.on('Weapon and Ammunition Issue', {
                     // if (!response.message) {
                     //     frm.set_value('weapon_rfid', '');
                     //     frappe.throw("Not Authorized for this Weapon.");
-                    // } else if (response.message === 1) {
-                    //     frm.set_value('weapon_rfid', '');
-                    //     frappe.throw("Weapon Not Available.");
+                    if (response.message === 1) {
+                        frm.set_value('weapon_rfid', '');
+                        frappe.throw("Weapon Not Available.");
+                    }
                     // } else {
                     frm.set_value('weapon_category', weaponDetails[0]);
                     frm.set_value('weapon_name', weaponDetails[1]);
