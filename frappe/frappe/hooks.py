@@ -34,6 +34,7 @@ app_include_js = [
 app_include_css = [
 	"desk.bundle.css",
 	"report.bundle.css",
+	
 ]
 
 doctype_js = {
