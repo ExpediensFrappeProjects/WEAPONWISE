@@ -46,7 +46,7 @@ def get_issue_details_a(ammunitionRFID):
         FROM `tabWeapon and Ammunition Issue`
         WHERE weapon_rfid = %(ammunitionRFID)s
     """
-
+    
     issueDetails = frappe.db.sql(sql_query, {"ammunitionRFID": ammunitionRFID})
     nested_tuple = issueDetails[0]
     data_list = list(nested_tuple)
