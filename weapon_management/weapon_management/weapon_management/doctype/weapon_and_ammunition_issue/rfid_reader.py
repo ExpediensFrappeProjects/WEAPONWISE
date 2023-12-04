@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 class RFIDListener:
-    def __init__(self, server_ip='192.168.10.124', server_port=12346, allowed_ip='192.168.10.107'):
+    def __init__(self, server_ip='192.168.10.21', server_port=12346, allowed_ip='192.168.10.107'):
         self.server_ip = server_ip
         self.server_port = server_port
     
@@ -87,7 +87,6 @@ rfid_listener_instance = RFIDListener()
 @app.route('/get_latest_rfid_data', methods=['GET'])
 def get_latest_rfid_data():
     return jsonify({'latest_rfid_data': rfid_listener_instance.latest_rfid_data})
-
 
 if __name__ == '__main__':
     # Start RFID listener in a separate thread
