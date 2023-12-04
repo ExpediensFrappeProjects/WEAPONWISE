@@ -56,7 +56,8 @@ function addCustomIconButton(frm, fieldname) {
 
 
 frappe.ui.form.on('Weapon and Ammunition Return', {
-    issue_document_number: function(frm) {
+    weapon_rfid: function(frm) {
+		frm.set_value('issue_document_number','')
 		frm.set_value('unit_location','');
 		frm.set_value('issue_data_and_time','');
 		frm.set_value('duty_code','');
@@ -67,7 +68,6 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
 		frm.set_value('personnel_id','');
 		frm.set_value('person_name','');
 		frm.set_value('rank','');
-		frm.set_value('weapon_rfid','');
 		frm.set_value('weapon_category','');
 		frm.set_value('weapon_name','');
 		frm.set_value('weapon_serial_number','');
@@ -84,25 +84,26 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
 
 		frm.set_value('return_date_and_time','')
         var unitLocation;
-        if (frm.doc.issue_document_number) {
+        if (frm.doc.weapon_rfid) {
             frappe.call({
-                method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details',
+                method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details_w',
                 args: {
-                    issueDocumentNumber: frm.doc.issue_document_number
+                    weaponRFID: frm.doc.weapon_rfid
                 },
                 callback: function(response) {
                     var issueDetails = response.message;
+					console.log(`${issueDetails}`)
 					// frm.set_value('unit_location', issueDetails[0]);
-					frm.set_value('issue_data_and_time', issueDetails[1]);
-					frm.set_value('duty_code', issueDetails[2]);
-					frm.set_value('duty_name', issueDetails[3]);
-					frm.set_value('duty_start', issueDetails[4]);
-					frm.set_value('duty_end', issueDetails[5]);
-					frm.set_value('duty_location', issueDetails[6]);
-					frm.set_value('personnel_id', issueDetails[7]);
-					frm.set_value('person_name', issueDetails[8]);
-					frm.set_value('rank', issueDetails[9]);
-					frm.set_value('weapon_rfid', issueDetails[10]);
+					frm.set_value('issue_document_number',issueDetails[1])
+					frm.set_value('issue_data_and_time', issueDetails[2]);
+					frm.set_value('duty_code', issueDetails[3]);
+					frm.set_value('duty_name', issueDetails[4]);
+					frm.set_value('duty_start', issueDetails[5]);
+					frm.set_value('duty_end', issueDetails[6]);
+					frm.set_value('duty_location', issueDetails[7]);
+					frm.set_value('personnel_id', issueDetails[8]);
+					frm.set_value('person_name', issueDetails[9]);
+					frm.set_value('rank', issueDetails[10]);
 					frm.set_value('weapon_category', issueDetails[11]);
 					frm.set_value('weapon_name', issueDetails[12]);
 					frm.set_value('weapon_serial_number', issueDetails[13]);
@@ -161,6 +162,114 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
     }
 });
 
+
+// frappe.ui.form.on('Weapon and Ammunition Return', {
+//     ammunition_rfid: function(frm) {
+// 		frm.set_value('issue_document_number','')
+// 		frm.set_value('unit_location','');
+// 		frm.set_value('issue_data_and_time','');
+// 		frm.set_value('duty_code','');
+// 		frm.set_value('duty_name','');
+// 		frm.set_value('duty_start', '');
+// 		frm.set_value('duty_end','');
+// 		frm.set_value('duty_location', '');
+// 		frm.set_value('personnel_id','');
+// 		frm.set_value('person_name','');
+// 		frm.set_value('rank','');
+// 		frm.set_value('weapon_rfid','')
+// 		frm.set_value('weapon_category','');
+// 		frm.set_value('weapon_name','');
+// 		frm.set_value('weapon_serial_number','');
+// 		frm.set_value('butt_number','');
+// 		frm.set_value('weapon_storage_id','');
+// 		frm.set_value('weapon_storage_shelf','');
+// 		frm.set_value('ammunition_category','');
+// 		frm.set_value('box_number', '');
+// 		frm.set_value('available_quantity','');
+// 		frm.set_value('round_per_box','');
+// 		frm.set_value('ammunition_storage_id','');
+// 		frm.set_value('ammunition_storage_shelf','');
+
+// 		frm.set_value('return_date_and_time','')
+//         var unitLocation;
+//         if (frm.doc.ammunition_rfid) {
+//             frappe.call({
+//                 method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details_a',
+//                 args: {
+//                     ammunitionRFID: frm.doc.ammunition_rfid
+//                 },
+//                 callback: function(response) {
+//                     var issueDetails = response.message;
+// 					console.log(`${issueDetails}`)
+// 					// frm.set_value('unit_location', issueDetails[0]);
+// 					frm.set_value('issue_document_number',issueDetails[1])
+// 					frm.set_value('issue_data_and_time', issueDetails[2]);
+// 					frm.set_value('duty_code', issueDetails[3]);
+// 					frm.set_value('duty_name', issueDetails[4]);
+// 					frm.set_value('duty_start', issueDetails[5]);
+// 					frm.set_value('duty_end', issueDetails[6]);
+// 					frm.set_value('duty_location', issueDetails[7]);
+// 					frm.set_value('personnel_id', issueDetails[8]);
+// 					frm.set_value('person_name', issueDetails[9]);
+// 					frm.set_value('rank', issueDetails[10]);
+// 					frm.set_value('weapon_rfid',issueDetails[11])
+// 					frm.set_value('weapon_category', issueDetails[12]);
+// 					frm.set_value('weapon_name', issueDetails[13]);
+// 					frm.set_value('weapon_serial_number', issueDetails[14]);
+// 					frm.set_value('butt_number', issueDetails[15]);
+// 					frm.set_value('weapon_storage_id', issueDetails[16]);
+// 					frm.set_value('weapon_storage_shelf', issueDetails[17]);
+// 					// frm.set_value('ammunition_rfid', issueDetails[17]);
+// 					frm.set_value('ammunition_category', issueDetails[18]);
+// 					frm.set_value('box_number', issueDetails[19]);
+// 					frm.set_value('available_quantity', issueDetails[20]);
+// 					frm.set_value('round_per_box', issueDetails[21]);
+// 					frm.set_value('ammunition_storage_id', issueDetails[22]);
+// 					frm.set_value('ammunition_storage_shelf', issueDetails[23]);
+
+// 					frm.set_value('return_date_and_time',frappe.datetime.now_datetime())
+
+// 					unitLocation = issueDetails[0];
+//                     frm.set_value('unit_location', unitLocation);
+
+// 					frappe.call({
+// 						method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_authorizer',
+// 						args: {
+// 							unitLocation: frm.doc.unit_location
+// 						},
+// 						callback: function (response) {
+// 							var options = response.message;
+// 							frm.set_query("authorized_by", function () {
+// 								return {
+// 									filters: [
+// 										["Person Master", "name", "in", options]
+// 									]
+// 								};
+// 							});
+// 						}
+// 					});
+		
+// 					frappe.call({
+// 						method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_armourer',
+// 						args: {
+// 							unitLocation: frm.doc.unit_location
+// 						},
+// 						callback: function (response) {
+// 							var options = response.message;
+// 							frm.set_query("armourer_id", function () {
+// 								return {
+// 									filters: [
+// 										["Person Master", "name", "in", options]
+// 									]
+// 								};
+// 							});
+// 						}
+// 					});
+//                 }
+//             });
+//         }
+//     }
+// });
 
 frappe.ui.form.on("Weapon and Ammunition Return",{
 	returned:function(frm){
