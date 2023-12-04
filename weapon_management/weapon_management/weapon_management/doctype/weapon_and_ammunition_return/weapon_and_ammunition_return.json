@@ -93,6 +93,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Return Document Number",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -330,7 +331,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2023-12-04 11:33:14.943316",
+=======
+ "modified": "2023-12-04 12:55:45.643208",
+>>>>>>> 3a7e60b (test)
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",
