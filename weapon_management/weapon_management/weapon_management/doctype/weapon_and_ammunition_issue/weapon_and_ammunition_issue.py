@@ -127,43 +127,6 @@ def get_person_name(person_id):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @frappe.whitelist()
 def get_return_doc_num():
     
