@@ -21,7 +21,7 @@ class WeaponandAmmunitionIssue(Document):
     #     # Increment the autoname counter for the next document
     #     frappe.get_single('Auto Repeat').increment_series(self.doctype)
 
-
+    
 
     def before_submit(self):
         weaponRFID = self.weapon_rfid
@@ -29,6 +29,13 @@ class WeaponandAmmunitionIssue(Document):
         
         personRFID = self.personnel_rfid
         frappe.db.set_value("Person Master", {"rf_id": personRFID}, {"weapon_issue_status": "Active"})
+    
+    def validate(self):
+        if self.weapon_rfid or self.ammunition_rfid:
+            pass
+        else:
+            frappe.throw("Please Enter Weapon RFID or Ammunition RFID or Both.")
+
 
 
 @frappe.whitelist()
@@ -118,19 +125,63 @@ def get_person_name(person_id):
     personName = frappe.get_value("Person Master", {"name": person_id}, "full_name")
     return personName
 
+# @frappe.whitelist()
+# def get_issue_doc_num():
+#     doc = frappe.db.get_value("Weapon and Ammunition Issue", "issue_document_number")
+#     frappe.msgprint(str(doc))
+    
+#     if doc:
+#         prefix = "Issue"
+#         current_issue_number = int(doc[len(prefix):])
+#         next_issue_number = current_issue_number + 1
+#         issue_doc_num = f"{prefix}{next_issue_number}"
+#     else:
+#         issue_doc_num = "Issue1"
+
+#     return issue_doc_num
+
+# @frappe.whitelist()
+# def get_issue_doc_num():
+#     # Fetch the document using frappe.get_doc
+#     doc = frappe.get_doc("Weapon and Ammunition Issue")
+#     frappe.msgprint(str(doc))
+
+#     # Check if the document has a value for the "issue_document_number" field
+#     if doc.issue_document_number:
+#         # If the field has a value, use autoname to get the next unique name
+#         next_issue_number = frappe.get_auto_increment_value("Weapon and Ammunition Issue")
+#         issue_doc_num = f"Issue{next_issue_number}"
+#     else:
+#         # If the field is empty, set the issue document number to a default value
+#         issue_doc_num = "Issue1"
+
+#     return issue_doc_num
+
 @frappe.whitelist()
 def get_issue_doc_num():
-    doc = frappe.db.get_value("Weapon and Ammunition Issue", "issue_document_number")
-    
-    if doc:
-        prefix = "Issue"
-        current_issue_number = int(doc[len(prefix):])
-        next_issue_number = current_issue_number + 1
-        issue_doc_num = f"{prefix}{next_issue_number}"
+    # Fetch the document using frappe.get_doc
+    doc = frappe.get_doc("Weapon and Ammunition Issue")
+
+    # Debugging: Print the entire document
+    print("Document Details:", doc.as_dict())
+
+    # Check if the document has a value for the "issue_document_number" field
+    if doc.issue_document_number:
+        # Debugging: Print the value of "issue_document_number"
+        print("Value of 'issue_document_number':", doc.issue_document_number)
+
+        # If the field has a value, use autoname to get the next unique name
+        next_issue_number = frappe.get_auto_increment_value("Weapon and Ammunition Issue")
+
+        # Debugging: Print the next issue number
+        print("Next Issue Number:", next_issue_number)
+
+        issue_doc_num = f"Issue{next_issue_number}"
     else:
+        # If the field is empty, set the issue document number to a default value
         issue_doc_num = "Issue1"
 
+    # Debugging: Print the final issue document number
+    print("Final Issue Document Number:", issue_doc_num)
+
     return issue_doc_num
-
-
-
