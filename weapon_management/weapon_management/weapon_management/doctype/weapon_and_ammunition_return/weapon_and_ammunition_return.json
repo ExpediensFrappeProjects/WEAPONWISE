@@ -75,8 +75,7 @@
    "fieldname": "issue_document_number",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Issue Document Number",
-   "reqd": 1
+   "label": "Issue Document Number"
   },
   {
    "fieldname": "column_break_tztwb",
@@ -172,8 +171,7 @@
   {
    "fieldname": "weapon_rfid",
    "fieldtype": "Data",
-   "label": "Weapon RFID",
-   "read_only": 1
+   "label": "Weapon RFID"
   },
   {
    "fieldname": "weapon_storage_id",
@@ -195,8 +193,7 @@
   {
    "fieldname": "ammunition_rfid",
    "fieldtype": "Data",
-   "label": "Ammunition RFID",
-   "read_only": 1
+   "label": "Ammunition RFID"
   },
   {
    "fieldname": "box_number",
@@ -333,7 +330,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-26 18:12:05.534333",
+ "modified": "2023-12-04 11:33:14.943316",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",
