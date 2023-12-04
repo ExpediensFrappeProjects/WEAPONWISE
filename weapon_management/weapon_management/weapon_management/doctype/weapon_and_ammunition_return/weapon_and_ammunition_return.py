@@ -80,7 +80,10 @@ def get_person_name(personID):
 
 @frappe.whitelist()
 def get_return_doc_num():
-    doc = frappe.db.get_value("Weapon and Ammunition Return", "return_document_number")
+    
+    last_document = frappe.db.get_list(doctype='Weapon and Ammunition Return', limit=1, order_by='creation desc')
+
+    doc = frappe.db.get_value("Weapon and Ammunition Return",last_document[0].name, "return_document_number")
     
     if doc:
         prefix = "Return"
