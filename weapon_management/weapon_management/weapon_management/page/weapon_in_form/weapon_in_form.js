@@ -18,12 +18,19 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         fieldname: 'document_number'
     });
 
-    let datarangeField = page.add_field({
+    let documentDate = page.add_field({
         label: "Document Date",
         fieldtype: 'Date',
         fieldname: 'document_date'
     });
 
+    let acquiredDate = page.add_field({
+        label: "Acquired Date",
+        fieldtype: 'Date',
+        fieldname: 'acquired_date'
+    });
+
+    
     let source = page.add_field({
         label: "Source",
         fieldtype: 'Data',
@@ -95,7 +102,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         return (
             unitLocation.get_value() &&
             documentNumber.get_value() &&
-            datarangeField.get_value() &&
+            documentDate.get_value() &&
             source.get_value() &&
             weaponCategory.get_value() &&
             quantity.get_value()
@@ -110,6 +117,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             weaponName.set_value('');
             weaponCategory.set_value('');
             quantity.set_value('');
+            acquiredDate.set_value('');
             addFlag = true;
         }
     });
@@ -123,10 +131,13 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                 const docValues = {
                     unit_location: unitLocation.get_value(),
                     document_number: documentNumber.get_value(),
-                    document_date: datarangeField.get_value(),
+                    document_date: documentDate.get_value(),
                     source: source.get_value(),
                     weapon_category: weaponCategory.get_value(),
-                    quantity: quantity.get_value()
+                    quantity: quantity.get_value(),
+                    authorised_by: authorisedBy.get_value(),
+                    authorizer_name: authorizerName.get_value(),
+                    docstatus:1
                 };
     
                 const detailsTable = tableContainer.find('table');
@@ -135,22 +146,21 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                 detailsTable.find('tbody tr').each(function () {
                     const row = $(this);
                     const rowData = {
-                        rfid_tag: row.find('td:nth-child(3) select').val(),
-                        weapon_category: row.find('td:nth-child(1) input').val(),
-                        weapon_name: row.find('td:nth-child(2) input').val(),
-                        unit: row.find('td:nth-child(4) input').val(),
-                        serial_number: row.find('td:nth-child(5) input').val(),
-                        butt_number: row.find('td:nth-child(6) input').val(),
-                        date_acquired: datarangeField.get_value(),
-                        storage_id: row.find('td:nth-child(7) select').val(),
-                        shelf: row.find('td:nth-child(8) select').val(),
+                        weapon_category: row.find('td:nth-child(2) input').val(),
+                        weapon_name: row.find('td:nth-child(3) input').val(),
+                        rfid_tag: row.find('td:nth-child(4) input').val(),
+                        unit: row.find('td:nth-child(5) input').val(),
+                        serial_number: row.find('td:nth-child(6) input').val(),
+                        butt_number: row.find('td:nth-child(7) input').val(),
+                        storage_id: row.find('td:nth-child(8) select').val(),
+                        shelf: row.find('td:nth-child(9) select').val(),
+                        date_acquired: acquiredDate.get_value(),
                         status: 'Available', 
-                        docstatus:1,
                         unit_location: unitLocation.get_value() 
                     };
                     detailsData.push(rowData);
+                    
                 });
-    
                 saveDocument(docValues, detailsData);
             } else {
                 frappe.msgprint(__('Please Fill In All Required Fields.'));
@@ -175,7 +185,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                     frappe.msgprint(__('Document saved successfully.'));
                     setTimeout(function () {
                         window.location.reload();
-                    }, 2000);
+                    }, 20000);
                 } else {
                     frappe.msgprint(__('Failed to save document.'));
                 }
