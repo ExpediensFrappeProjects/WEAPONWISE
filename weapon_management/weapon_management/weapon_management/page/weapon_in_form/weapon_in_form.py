@@ -53,33 +53,7 @@ def get_shelfs(storageID):
     except Exception as e:
         frappe.log_error(f"Error in get_shelfs: {str(e)}")
 
-      
-
-# @frappe.whitelist()
-# def save_weapon_in_document(doc_values, details_data):
-#     doc_values = json.loads(doc_values)
-#     details_data = json.loads(details_data)
-
-
-#     doc = frappe.new_doc('Weapon In')
-#     doc.update(doc_values)
-
-#     for data in details_data:
-#         storage_system_id = data.get('storage_id')
-#         parent = frappe.db.get_value("Storage System Master", {"storage_system_id": storage_system_id}, ["name"])
-#         data['parent'] = parent
-#         data['parent'] = data.pop('storage_id', None)
-#         frappe.throw(str(data))
-#         doc.append('weapon_in_details', data)
-        
-       
-#     doc.insert(ignore_permissions=True) 
-#     frappe.db.commit()
-
-#     return True
-
-
-
+ 
 @frappe.whitelist()
 def save_weapon_in_document(doc_values, details_data):
     doc_values = json.loads(doc_values)

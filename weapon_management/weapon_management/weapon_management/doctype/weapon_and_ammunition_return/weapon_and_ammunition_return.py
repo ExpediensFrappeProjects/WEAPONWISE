@@ -18,22 +18,40 @@ class WeaponandAmmunitionReturn(Document):
 
 
 @frappe.whitelist()
-def get_issue_details(issueDocumentNumber):
-	sql_query = """
-		SELECT unit_location, date_and_time, duty_code, duty_name, duty_start, duty_end,duty_location, 
-		personnel_id, person_name, rank, weapon_rfid, weapon_category,
-		weapon_name, weapon_serial_number, butt_number, weapon_storage_id, weapon_storage_shelf,
-		ammunition_rfid, ammunition_category, box_number, available_quantity, round_per_box,
-		ammunition_storage_id, ammunition_storage_shelf
-		FROM `tabWeapon and Ammunition Issue`
-		WHERE issue_document_number = %(issueDocumentNumber)s
-	"""
+def get_issue_details_w(weaponRFID):
+ 
+    sql_query = """
+        SELECT unit_location, issue_document_number, date_and_time, duty_code, duty_name, duty_start, duty_end, duty_location, 
+        personnel_id, person_name, rank, weapon_category, weapon_name, weapon_serial_number,butt_number, weapon_storage_id,
+        weapon_storage_shelf,ammunition_rfid, ammunition_category, box_number, available_quantity, round_per_box,
+        ammunition_storage_id, ammunition_storage_shelf
+        FROM `tabWeapon and Ammunition Issue`
+        WHERE weapon_rfid = %(weaponRFID)s
+    """
 
-	issueDetails = frappe.db.sql(sql_query, {"issueDocumentNumber": issueDocumentNumber})
-	nested_tuple = issueDetails[0]
-	data_list = list(nested_tuple)
+    issueDetails = frappe.db.sql(sql_query, {"weaponRFID": weaponRFID})
+    nested_tuple = issueDetails[0]
+    data_list = list(nested_tuple)
+    
+    return data_list
 
-	return data_list
+@frappe.whitelist()
+def get_issue_details_a(ammunitionRFID):
+
+    sql_query = """
+        SELECT unit_location, issue_document_number, date_and_time, duty_code, duty_name, duty_start, duty_end, duty_location, 
+        personnel_id, person_name, rank, weapon_rfid, weapon_category, weapon_name, weapon_serial_number,butt_number, weapon_storage_id,
+        weapon_storage_shelf,ammunition_category, box_number, available_quantity, round_per_box,
+        ammunition_storage_id, ammunition_storage_shelf
+        FROM `tabWeapon and Ammunition Issue`
+        WHERE weapon_rfid = %(ammunitionRFID)s
+    """
+
+    issueDetails = frappe.db.sql(sql_query, {"ammunitionRFID": ammunitionRFID})
+    nested_tuple = issueDetails[0]
+    data_list = list(nested_tuple)
+    
+    return data_list
 
 
 @frappe.whitelist()
