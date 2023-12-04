@@ -177,7 +177,7 @@ def get_return_doc_num():
         next_return_number = current_return_number + 1
         return_doc_num = f"{prefix}{next_return_number}"
     else:
-        return_doc_num = "Return1"
+        return_doc_num = "Issue1"
 
     return return_doc_num
 
