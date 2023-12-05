@@ -1,11 +1,11 @@
-frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
-    var page = frappe.ui.make_app_page({
-        parent: wrapper,
-        title: 'Weapon In Form',
-        single_column: true
-    });
+frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
+	var page = frappe.ui.make_app_page({
+		parent: wrapper,
+		title: 'Ammunition In Form',
+		single_column: true
+	});
 
-    let unitLocation = page.add_field({
+	let unitLocation = page.add_field({
         label: "Unit Location",
         fieldtype: 'Select',
         fieldname: 'unit_location',
@@ -51,18 +51,12 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         read_only: true
     });
 
-    let weaponName = page.add_field({
-        label: "Weapon Name",
-        fieldtype: 'Select',
-        fieldname: 'weapon_name',
-        options: []
-    });
 
-    let weaponCategory = page.add_field({
-        label: "Weapon Category",
-        fieldtype: 'Data',
-        fieldname: 'weapon_category',
-        read_only: true
+    let ammunitionCategory = page.add_field({
+        label: "Ammunition Category",
+        fieldtype: 'Select',
+        fieldname: 'ammunition_category',
+        options: []
     });
 
     let quantity = page.add_field({
@@ -83,13 +77,12 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             if (addFlag) {
                 if (validateFields()) {
                     const quantityValue = quantity.get_value();
-                    const selectedWeaponName = weaponName.get_value();
-                    const selectedWeaponCategory = weaponCategory.get_value();
+                    const selectedAmmunitionCategory = ammunitionCategory.get_value();
                     if (!tableContainer.find('table').length) {
-                        let columnWidths = [12, 10, 25, 6, 12, 8, 12, 12]; // Using percentages instead of pixels
-                        createModernTable(tableContainer, ['Weapon Category', 'Weapon Name', 'RFID Tag', 'Unit', 'Serial Number', 'Butt Number', 'Storage ID', 'Shelf'], quantityValue, selectedWeaponCategory, selectedWeaponName, columnWidths);
+                        let columnWidths = [12, 10, 25, 6, 12, 8, 12, 12]; 
+                        createModernTable(tableContainer, ['Ammunition Category', 'RFID Tag','Ammunition Box ID','Round Per Box/Total Quantity', 'Storage ID', 'Shelf'], quantityValue, selectedAmmunitionCategory, columnWidths);
                     } else {
-                        addRowsToTable(tableContainer, quantityValue, selectedWeaponCategory, selectedWeaponName);
+                        addRowsToTable(tableContainer, quantityValue, selectedAmmunitionCategory);
                     }
                     addFlag = false;
                 } else {
@@ -104,10 +97,8 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             unitLocation.get_value() &&
             documentNumber.get_value() &&
             documentDate.get_value() &&
-            acquiredDate.get_value() &&
-            authorisedBy.get_value() &&
             source.get_value() &&
-            weaponCategory.get_value() &&
+            ammunitionCategory .get_value() &&
             quantity.get_value()
         );
     }
@@ -117,8 +108,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         fieldtype: 'Button',
         fieldname: 'clear_fields',
         click: function () {
-            weaponName.set_value('');
-            weaponCategory.set_value('');
+            ammunitionCategory.set_value('');
             quantity.set_value('');
             acquiredDate.set_value('');
             addFlag = true;
@@ -131,19 +121,19 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             return;
         }
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.save_weapon_in_document',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.save_ammunition_in_document',
             args: {
                 doc_values: docValues,
                 details_data: detailsData
             },
             callback: function (response) {
                 if (response.message) {
-                    frappe.msgprint(__('Document saved successfully.'));
+                    frappe.msgprint(__('Document Saved Successfully.'));
                     setTimeout(function () {
                         window.location.reload();
                     }, 20000);
                 } else {
-                    frappe.msgprint(__('Failed to save document.'));
+                    frappe.msgprint(__('Failed To Save Document.'));
                 }
             }
         });
@@ -151,7 +141,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     
     function fetchUnitLocation() {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_unit_location',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_unit_location',
             callback: function (response) {
                 var unitLocations = response.message;
                 unitLocation.df.options = unitLocations;
@@ -173,7 +163,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
 
     function fetchAutorizedBy(selectedUnitLocation) {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_authorised_by',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_authorised_by',
             args:{
                 unitLocation:selectedUnitLocation
             },
@@ -193,7 +183,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     
     function fetchAuthorizerName(selectedAuthorisedBy) {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_authorizer_name',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_authorizer_name',
             args: {
                 authorizedBy: selectedAuthorisedBy
             },
@@ -205,41 +195,24 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     }
     
 
-    function fetchWeaponName() {
+    function fetchAmmunitionCategory() {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_weapon_name',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_ammunition_category',
             callback: function (response) {
-                var weaponNames = response.message;
-                weaponName.df.options = weaponNames;
-                weaponName.refresh();
-            }
-        });
-
-        weaponName.$input.on('change', function () {
-            var selectedWeaponName = weaponName.get_value();
-            fetchWeaponCategory(selectedWeaponName);
-        });
-    }
-    fetchWeaponName();
-
-    function fetchWeaponCategory(selectedWeaponName) {
-        frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_weapon_category',
-            args: {
-                weaponName: selectedWeaponName
-            },
-            callback: function (response) {
-                var weaponCategories = response.message;
-                weaponCategory.set_value(weaponCategories);
+                var ammunitionCategorys = response.message;
+				ammunitionCategory.df.options = ammunitionCategorys;
+				ammunitionCategory.refresh()  
             }
         });
     }
+
+	fetchAmmunitionCategory();
 
     var storageIDS;
 
     function fetchStorageID(selectedUnitLocation) {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_storage_id',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_storage_id',
             args: {
                 unitLocation: selectedUnitLocation
             },
@@ -253,12 +226,13 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     
     function fetchShelf(selectedStorageID, rowElement) {
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.get_shelfs',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_shelfs',
             args: {
                 storageID: selectedStorageID
             },
             callback: function (response) {
                 shelfOptions = response.message;
+				// alert(shelfOptions)
                 setShelfOptions(rowElement, shelfOptions);
             }
         });
@@ -270,7 +244,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         for (let k = 0; k < storageIDS.length; k++) {
             $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(selectField);
         }
-        rowElement.find('td:nth-child(9)').html(selectField);
+        rowElement.find('td:nth-child(7)').html(selectField);
     }
     
     function setShelfOptions(rowElement, storageIDS) {
@@ -278,21 +252,21 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     }
 
 
-    function createModernTable(container, columns, numRows, selectedWeaponCategory, selectedWeaponName, columnWidths) {
+    function createModernTable(container, columns, numRows, selectedAmmunitionCategory, selectedWeaponName, columnWidths) {
         let table = $('<table class="table table-bordered table-striped"></table>').appendTo(container);
         table.css('margin-top', '14px');
     
         let thead = $('<thead class="thead-dark"></thead>').appendTo(table);
         let headerRow = $('<tr></tr>').appendTo(thead);
-        $('<th style="text-align: center; width: 5%;">S.No</th>').appendTo(headerRow); // Use a percentage for the default width
+        $('<th style="text-align: center; width: 5%;">S.No</th>').appendTo(headerRow); 
     
         for (let j = 0; j < columns.length; j++) {
-            let columnWidth = columnWidths && columnWidths[j] ? columnWidths[j] + '%' : ''; // Use a percentage or leave it empty
+            let columnWidth = columnWidths && columnWidths[j] ? columnWidths[j] + '%' : ''; 
             $('<th style="text-align: center; width: ' + columnWidth + ';">' + columns[j] + '</th>').appendTo(headerRow);
         }
     
         let tbody = $('<tbody></tbody>').appendTo(table);
-        addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName);
+        addRowsToTable(container, numRows, selectedAmmunitionCategory, selectedWeaponName);
         return table;
     }
     
@@ -312,7 +286,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
 
         let saveButtonCreated = false;
 
-        function addRowsToTable(container, numRows, selectedWeaponCategory, selectedWeaponName) {
+        function addRowsToTable(container, numRows, selectedAmmunitionCategory, selectedWeaponName) {
             let table = container.find('table');
             let tbody = table.find('tbody');
             let startingSerialNumber = getLastSerialNumber() + 1;
@@ -324,10 +298,10 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
 
                 $('<td style="text-align: center;">' + currentSerialNumber + '</td>').appendTo(row);
 
-                for (let j = 0; j < 8; j++) {
+                for (let j = 0; j < 6; j++) {
                     let inputField;
 
-                    if (j === 6) {
+                    if (j === 4) {
                         inputField = $('<select class="form-control"></select>');
                         $('<option value="">Select Storage ID</option>').appendTo(inputField);
 
@@ -339,30 +313,18 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                             const selectedStorageID = $(this).val();
                             fetchShelf(selectedStorageID, row);
                         });
-                    } else if (j === 7) {
+                    } else if (j === 5) {
                         inputField = $('<select class="form-control"></select>');
                         $('<option value="">Select Shelf</option>').appendTo(inputField);
-                    } else if (j === 3) {
-                        inputField = $('<select class="form-control"></select>');
-                        $('<option value="">Select Unit</option>').appendTo(inputField);
-
-                        const staticOptions = ['Pc'];
-
-                        for (let option of staticOptions) {
-                            $('<option value="' + option + '">' + option + '</option>').appendTo(inputField);
-                        }
+                  
                     } else {
                         inputField = $('<input type="text" class="form-control">');
 
-                        if (j === 0 && selectedWeaponCategory) {
-                            inputField.val(selectedWeaponCategory);
+                        if (j === 0 && selectedAmmunitionCategory) {
+                            inputField.val(selectedAmmunitionCategory);
                             inputField.prop('readonly', true);
                         }
 
-                        if (j === 1 && selectedWeaponName) {
-                            inputField.val(selectedWeaponName);
-                            inputField.prop('readonly', true);
-                        }
                     }
 
                     $('<td></td>').append(inputField).appendTo(row);
@@ -387,7 +349,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                                     document_number: documentNumber.get_value(),
                                     document_date: documentDate.get_value(),
                                     source: source.get_value(),
-                                    weapon_category: weaponCategory.get_value(),
+                                    ammunition_category: ammunitionCategory.get_value(),
                                     quantity: quantity.get_value(),
                                     authorised_by: authorisedBy.get_value(),
                                     authorizer_name: authorizerName.get_value(),
@@ -400,14 +362,13 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                                 detailsTable.find('tbody tr').each(function () {
                                     const row = $(this);
                                     const rowData = {
-                                        weapon_category: row.find('td:nth-child(2) input').val(),
-                                        weapon_name: row.find('td:nth-child(3) input').val(),
-                                        rfid_tag: row.find('td:nth-child(4) input').val(),
-                                        unit: row.find('td:nth-child(5) input').val(),
-                                        serial_number: row.find('td:nth-child(6) input').val(),
-                                        butt_number: row.find('td:nth-child(7) input').val(),
-                                        storage_id: row.find('td:nth-child(8) select').val(),
-                                        shelf: row.find('td:nth-child(9) select').val(),
+                                        ammunition_category: row.find('td:nth-child(2) input').val(),
+                                        rfid_tag: row.find('td:nth-child(3) input').val(),
+                                        ammunition_box_id: row.find('td:nth-child(4) input').val(),
+                                        round_per_box: row.find('td:nth-child(5) input').val(),
+										available_quantity: row.find('td:nth-child(5) input').val(),
+                                        storage_id: row.find('td:nth-child(6) select').val(),
+                                        shelf: row.find('td:nth-child(7) select').val(),
                                         date_acquired: acquiredDate.get_value(),
                                         status: 'Available',
                                         unit_location: unitLocation.get_value()
@@ -453,4 +414,4 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                 row.find('select.form-control').val('').trigger('change');
             }
 
-};
+}
