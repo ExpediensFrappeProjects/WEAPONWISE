@@ -1,6 +1,5 @@
-// Copyright (c) 2023, Expedien and contributors
-// For license information, please see license.txt
-/* eslint-disable */
+
+
 frappe.query_reports["Weapon Inventory"] = {
     "filters": [
         {
@@ -18,6 +17,18 @@ frappe.query_reports["Weapon Inventory"] = {
             "reqd": 0
         },
         {
+            "fieldname": "from_date",
+            "label": __("From Date"),
+            "fieldtype": "Date",
+            "reqd": 0
+        },
+        {
+            "fieldname": "to_date",
+            "label": __("To Date"),
+            "fieldtype": "Date",
+            "reqd": 0
+        },
+        {
             "fieldname": "Clear Filters",
             "label": __("Clear Filters"),
             "fieldtype": "Button",
@@ -25,6 +36,8 @@ frappe.query_reports["Weapon Inventory"] = {
             "click": function() {
                 frappe.query_report.set_filter_value("unit", "");
                 frappe.query_report.set_filter_value("weapon", "");
+                frappe.query_report.set_filter_value("from_date", "");
+                frappe.query_report.set_filter_value("to_date", "");
                 frappe.query_report.refresh();
             },
         }

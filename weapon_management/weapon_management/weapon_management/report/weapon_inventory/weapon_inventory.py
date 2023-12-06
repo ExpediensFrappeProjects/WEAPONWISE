@@ -1,5 +1,3 @@
-# Copyright (c) 2023, Expedien and contributors
-# For license information, please see license.txt
 
 import frappe
 
@@ -13,7 +11,7 @@ def execute(filters=None):
 
     query = """
         SELECT 
-            twid.weapon_name as "Weapon",
+            twid.weapon_name AS "Weapon",
             COUNT(twid.weapon_name) AS "No Of Weapon"
         FROM "tabWeapon In Details" twid
         INNER JOIN "tabUnit Master" tum ON twid.unit_location = tum.name
@@ -27,6 +25,9 @@ def execute(filters=None):
     
     if filters_dict.get("weapon"):
         where_clause += f" AND twid.weapon_name = %(weapon)s"
+
+    if filters_dict.get("from_date") and filters_dict.get("to_date"):
+        where_clause += " AND twid.date_acquired BETWEEN %(from_date)s AND %(to_date)s"
 
     query += where_clause
 
