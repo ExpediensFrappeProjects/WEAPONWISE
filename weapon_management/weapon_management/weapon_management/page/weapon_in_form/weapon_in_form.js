@@ -24,19 +24,6 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         fieldname: 'document_date'
     });
 
-    let acquiredDate = page.add_field({
-        label: "Acquired Date",
-        fieldtype: 'Date',
-        fieldname: 'acquired_date'
-    });
-
-    
-    let source = page.add_field({
-        label: "Source",
-        fieldtype: 'Data',
-        fieldname: 'source'
-    });
-
     let authorisedBy = page.add_field({
         label: "Authorised By",
         fieldtype: 'Select',
@@ -49,6 +36,18 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
         fieldtype: 'Data',
         fieldname: 'authorizer_name',
         read_only: true
+    });
+
+    let source = page.add_field({
+        label: "Source",
+        fieldtype: 'Data',
+        fieldname: 'source'
+    });
+
+    let acquiredDate = page.add_field({
+        label: "Acquired Date",
+        fieldtype: 'Date',
+        fieldname: 'acquired_date'
     });
 
     let weaponName = page.add_field({
@@ -120,10 +119,10 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             weaponName.set_value('');
             weaponCategory.set_value('');
             quantity.set_value('');
-            acquiredDate.set_value('');
             addFlag = true;
         }
     });
+
 
     function saveDocument(docValues, detailsData) {
         var isConfirmed = window.confirm('Confirm to Save Document');
@@ -138,15 +137,21 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
             },
             callback: function (response) {
                 if (response.message) {
-                    frappe.msgprint(__('Document saved successfully.'));
+                    frappe.msgprint(__('Document Saved Successfully.'));
+                    disableSaveButton();
                     setTimeout(function () {
                         window.location.reload();
-                    }, 20000);
+                    }, 2000);
                 } else {
-                    frappe.msgprint(__('Failed to save document.'));
+                    frappe.msgprint(__('Failed To Save Document.'));
                 }
             }
         });
+    }
+    
+    function disableSaveButton() {
+        let saveButton = page.body.find('.btn-success');
+        saveButton.prop('disabled', true);
     }
     
     function fetchUnitLocation() {

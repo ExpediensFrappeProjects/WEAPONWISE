@@ -31,16 +31,18 @@
   "weapon_rfid",
   "weapon_category",
   "weapon_name",
+  "column_break_enzox",
   "weapon_serial_number",
   "butt_number",
   "weapon_storage_id",
   "weapon_storage_shelf",
-  "column_break_enzox",
+  "section_break_8wiff",
   "ammunition_rfid",
   "ammunition_category",
   "box_number",
   "available_quantity",
   "returned",
+  "column_break_nysc2",
   "quantity_used",
   "round_per_box",
   "ammunition_storage_id",
@@ -62,14 +64,12 @@
    "label": "Unit Details"
   },
   {
-   "fieldname": "unit_location",
-   "fieldtype": "Link",
-   "label": "Unit Location ",
-   "options": "Unit Master"
-  },
-  {
-   "fieldname": "column_break_ek72u",
-   "fieldtype": "Column Break"
+   "fieldname": "return_document_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Return Document Number",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "issue_document_number",
@@ -78,23 +78,8 @@
    "label": "Issue Document Number"
   },
   {
-   "fieldname": "column_break_tztwb",
+   "fieldname": "column_break_ek72u",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "issue_data_and_time",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Issue Data and Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "return_document_number",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Return Document Number",
-   "read_only": 1,
-   "reqd": 1
   },
   {
    "fieldname": "return_date_and_time",
@@ -104,14 +89,60 @@
    "read_only": 1
   },
   {
+   "fieldname": "issue_data_and_time",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue Data and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tztwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location ",
+   "options": "Unit Master"
+  },
+  {
    "fieldname": "duty_details_section",
    "fieldtype": "Section Break",
    "label": "Duty Details"
   },
   {
+   "fieldname": "duty_code",
+   "fieldtype": "Data",
+   "label": "Duty Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_name",
+   "fieldtype": "Link",
+   "label": "Duty Name",
+   "options": "Duty Master",
+   "read_only": 1
+  },
+  {
    "fieldname": "duty_location",
    "fieldtype": "Data",
    "label": "Duty Location",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_h9riv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duty_start",
+   "fieldtype": "Data",
+   "label": "Duty Start Date and Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duty_end",
+   "fieldtype": "Data",
+   "label": "Duty End  Date and Time",
    "read_only": 1
   },
   {
@@ -133,6 +164,10 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_unzau",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "rank",
    "fieldtype": "Link",
    "label": "Rank",
@@ -142,7 +177,12 @@
   {
    "fieldname": "weapon_and_ammunition_details_section",
    "fieldtype": "Section Break",
-   "label": "Weapon and Ammunition Details"
+   "label": "Weapon Details"
+  },
+  {
+   "fieldname": "weapon_rfid",
+   "fieldtype": "Data",
+   "label": "Weapon RFID"
   },
   {
    "fieldname": "weapon_category",
@@ -158,6 +198,10 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_enzox",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "weapon_serial_number",
    "fieldtype": "Data",
    "label": "Weapon Serial Number",
@@ -168,11 +212,6 @@
    "fieldtype": "Data",
    "label": "Butt Number",
    "read_only": 1
-  },
-  {
-   "fieldname": "weapon_rfid",
-   "fieldtype": "Data",
-   "label": "Weapon RFID"
   },
   {
    "fieldname": "weapon_storage_id",
@@ -188,13 +227,21 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_h9riv",
-   "fieldtype": "Column Break"
+   "fieldname": "section_break_8wiff",
+   "fieldtype": "Section Break",
+   "label": "Ammunition Details"
   },
   {
    "fieldname": "ammunition_rfid",
    "fieldtype": "Data",
    "label": "Ammunition RFID"
+  },
+  {
+   "fieldname": "ammunition_category",
+   "fieldtype": "Link",
+   "label": "Ammunition Category",
+   "options": "Ammunition Category Master",
+   "read_only": 1
   },
   {
    "fieldname": "box_number",
@@ -203,9 +250,21 @@
    "read_only": 1
   },
   {
+   "fieldname": "available_quantity",
+   "fieldtype": "Int",
+   "label": "Aavailable Quantity",
+   "read_only": 1
+  },
+  {
    "fieldname": "returned",
    "fieldtype": "Int",
    "label": "Returned"
+  },
+  {
+   "fieldname": "quantity_used",
+   "fieldtype": "Int",
+   "label": "Quantity Used",
+   "read_only": 1
   },
   {
    "fieldname": "round_per_box",
@@ -267,58 +326,6 @@
    "label": "Remarks"
   },
   {
-   "fieldname": "column_break_unzau",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_enzox",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "ammunition_category",
-   "fieldtype": "Link",
-   "label": "Ammunition Category",
-   "options": "Ammunition Category Master",
-   "read_only": 1
-  },
-  {
-   "fieldname": "duty_start",
-   "fieldtype": "Data",
-   "label": "Duty Start Date and Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "available_quantity",
-   "fieldtype": "Int",
-   "label": "Aavailable Quantity",
-   "read_only": 1
-  },
-  {
-   "fieldname": "duty_end",
-   "fieldtype": "Data",
-   "label": "Duty End  Date and Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "duty_name",
-   "fieldtype": "Link",
-   "label": "Duty Name",
-   "options": "Duty Master",
-   "read_only": 1
-  },
-  {
-   "fieldname": "quantity_used",
-   "fieldtype": "Int",
-   "label": "Quantity Used",
-   "read_only": 1
-  },
-  {
-   "fieldname": "duty_code",
-   "fieldtype": "Data",
-   "label": "Duty Code",
-   "read_only": 1
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -326,16 +333,16 @@
    "options": "Weapon and Ammunition Return",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_nysc2",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
-<<<<<<< HEAD
- "modified": "2023-12-04 11:33:14.943316",
-=======
- "modified": "2023-12-04 12:55:45.643208",
->>>>>>> 3a7e60b (test)
+ "modified": "2023-12-05 15:52:51.660357",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",

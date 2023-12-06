@@ -121,7 +121,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-23 17:02:08.931613",
+ "modified": "2023-12-06 10:44:54.305027",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Transactions",
@@ -139,6 +139,20 @@
    "label": "New Weapon Movement",
    "link_to": "Weapon Unit Movement",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Ammunition In ",
+   "link_to": "ammunition-in-form",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "New Weapon In",
+   "link_to": "weapon-in-form",
+   "type": "Page"
   },
   {
    "color": "Grey",
@@ -166,13 +180,6 @@
   {
    "color": "Grey",
    "doc_view": "New",
-   "label": "New Ammunition In ",
-   "link_to": "Ammunition In",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "New",
    "label": "New Inspection",
    "link_to": "Weapon Inspection",
    "type": "DocType"
@@ -189,13 +196,6 @@
    "doc_view": "New",
    "label": "Ammunition Checkout",
    "link_to": "Ammunition CheckOut",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "New",
-   "label": "New Weapon In",
-   "link_to": "Weapon In",
    "type": "DocType"
   },
   {

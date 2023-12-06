@@ -24,19 +24,6 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
         fieldname: 'document_date'
     });
 
-    let acquiredDate = page.add_field({
-        label: "Acquired Date",
-        fieldtype: 'Date',
-        fieldname: 'acquired_date'
-    });
-
-    
-    let source = page.add_field({
-        label: "Source",
-        fieldtype: 'Data',
-        fieldname: 'source'
-    });
-
     let authorisedBy = page.add_field({
         label: "Authorised By",
         fieldtype: 'Select',
@@ -49,6 +36,18 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
         fieldtype: 'Data',
         fieldname: 'authorizer_name',
         read_only: true
+    });
+
+    let source = page.add_field({
+        label: "Source",
+        fieldtype: 'Data',
+        fieldname: 'source'
+    });
+
+    let acquiredDate = page.add_field({
+        label: "Acquired Date",
+        fieldtype: 'Date',
+        fieldname: 'acquired_date'
     });
 
 
@@ -115,13 +114,14 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
         }
     });
 
+
     function saveDocument(docValues, detailsData) {
         var isConfirmed = window.confirm('Confirm to Save Document');
         if (!isConfirmed) {
             return;
         }
         frappe.call({
-            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.save_ammunition_in_document',
+            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.save_weapon_in_document',
             args: {
                 doc_values: docValues,
                 details_data: detailsData
@@ -129,9 +129,10 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
             callback: function (response) {
                 if (response.message) {
                     frappe.msgprint(__('Document Saved Successfully.'));
+                    disableSaveButton();
                     setTimeout(function () {
                         window.location.reload();
-                    }, 20000);
+                    }, 2000);
                 } else {
                     frappe.msgprint(__('Failed To Save Document.'));
                 }
@@ -139,6 +140,12 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
         });
     }
     
+    function disableSaveButton() {
+        let saveButton = page.body.find('.btn-success');
+        saveButton.prop('disabled', true);
+    }
+
+
     function fetchUnitLocation() {
         frappe.call({
             method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.get_unit_location',
@@ -232,7 +239,6 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
             },
             callback: function (response) {
                 shelfOptions = response.message;
-				// alert(shelfOptions)
                 setShelfOptions(rowElement, shelfOptions);
             }
         });
