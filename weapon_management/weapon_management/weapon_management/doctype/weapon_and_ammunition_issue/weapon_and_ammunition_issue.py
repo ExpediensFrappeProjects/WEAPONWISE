@@ -129,6 +129,7 @@ def get_person_name(person_id):
 
 @frappe.whitelist()
 def  get_issue_doc_num():
+
     
     last_document = frappe.db.get_list(doctype='Weapon and Ammunition Issue', limit=1, order_by='creation desc')
 

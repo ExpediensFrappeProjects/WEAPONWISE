@@ -1,3 +1,4 @@
+
 frappe.query_reports["Ammunition Inventory"] = {
     "filters": [
         {
@@ -15,6 +16,18 @@ frappe.query_reports["Ammunition Inventory"] = {
             "reqd": 0
         },
         {
+            "fieldname": "from_date",
+            "label": __("From Date"),
+            "fieldtype": "Date",
+            "reqd": 0
+        },
+        {
+            "fieldname": "to_date",
+            "label": __("To Date"),
+            "fieldtype": "Date",
+            "reqd": 0
+        },
+        {
             "fieldname": "Clear Filters",
             "label": __("Clear Filters"),
             "fieldtype": "Button",
@@ -23,6 +36,8 @@ frappe.query_reports["Ammunition Inventory"] = {
                 // Clear the filter values
                 frappe.query_report.set_filter_value("unit", "");
                 frappe.query_report.set_filter_value("ammunition_name", "");
+                frappe.query_report.set_filter_value("from_date", "");
+                frappe.query_report.set_filter_value("to_date", "");
                 // Update the report
                 frappe.query_report.refresh();
             },
