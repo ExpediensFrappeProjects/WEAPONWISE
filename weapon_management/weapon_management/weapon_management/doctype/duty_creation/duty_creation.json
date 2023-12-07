@@ -10,10 +10,10 @@
   "duty_details_section",
   "column_break_p5nbr",
   "unit_location",
-  "duty_start",
   "duty_location",
-  "column_break_9bmpv",
   "duty_name",
+  "column_break_9bmpv",
+  "duty_start",
   "duty_end",
   "section_break_uezs",
   "authorized_by",
@@ -50,14 +50,12 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Duty Name",
-   "options": "Duty Master",
-   "reqd": 1
+   "options": "Duty Master"
   },
   {
    "fieldname": "duty_location",
    "fieldtype": "Data",
-   "label": "Duty Location",
-   "reqd": 1
+   "label": "Duty Location"
   },
   {
    "fieldname": "duty_start",
@@ -81,8 +79,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Authorized By",
-   "options": "Person Master",
-   "reqd": 1
+   "options": "Person Master"
   },
   {
    "fetch_from": "authorized_by.full_name",
@@ -105,8 +102,7 @@
    "fieldname": "persons_required",
    "fieldtype": "Table",
    "label": "Number of Persons Required",
-   "options": "Duty Number of Persons Required",
-   "reqd": 1
+   "options": "Duty Number of Persons Required"
   },
   {
    "fieldname": "duty_assignment_section",
@@ -139,7 +135,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-21 14:30:48.953188",
+ "modified": "2023-12-06 18:08:27.591533",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Duty Creation",

@@ -32,14 +32,16 @@
   "weapon_category",
   "weapon_name",
   "weapon_serial_number",
-  "butt_number",
-  "weapon_storage_id",
-  "weapon_storage_shelf",
   "column_break_sgarx",
+  "weapon_storage_id",
+  "butt_number",
+  "weapon_storage_shelf",
+  "ammunition_details_section",
   "ammunition_rfid",
   "ammunition_category",
   "box_number",
   "qauntity",
+  "column_break_vgbvn",
   "available_quantity",
   "round_per_box",
   "ammunition_storage_id",
@@ -161,13 +163,12 @@
   {
    "fieldname": "weapon_details_section",
    "fieldtype": "Section Break",
-   "label": "Weapon and Ammunition Details"
+   "label": "Weapon Details"
   },
   {
    "fieldname": "weapon_rfid",
    "fieldtype": "Data",
-   "label": "Weapon RFID",
-   "reqd": 1
+   "label": "Weapon RFID"
   },
   {
    "fieldname": "weapon_category",
@@ -191,7 +192,7 @@
   {
    "fieldname": "butt_number",
    "fieldtype": "Data",
-   "label": "Butt Number",
+   "label": "Weapon Butt Number",
    "read_only": 1
   },
   {
@@ -215,8 +216,7 @@
   {
    "fieldname": "ammunition_rfid",
    "fieldtype": "Data",
-   "label": "Ammunition RFID",
-   "reqd": 1
+   "label": "Ammunition RFID"
   },
   {
    "fieldname": "box_number",
@@ -264,15 +264,13 @@
    "fieldname": "authorized_by",
    "fieldtype": "Link",
    "label": "Authorized By",
-   "options": "Person Master",
-   "reqd": 1
+   "options": "Person Master"
   },
   {
    "fieldname": "armourer_id",
    "fieldtype": "Link",
    "label": "Armourer ID",
-   "options": "Person Master",
-   "reqd": 1
+   "options": "Person Master"
   },
   {
    "fieldname": "column_break_eykin",
@@ -326,16 +324,14 @@
    "fieldname": "personnel_rfid",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Personnel RFID",
-   "reqd": 1
+   "label": "Personnel RFID"
   },
   {
    "fieldname": "duty_code",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Duty Code",
-   "options": "Duty Creation",
-   "reqd": 1
+   "options": "Duty Creation"
   },
   {
    "fieldname": "amended_from",
@@ -345,12 +341,21 @@
    "options": "Weapon and Ammunition Issue",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_details_section",
+   "fieldtype": "Section Break",
+   "label": "Ammunition Details"
+  },
+  {
+   "fieldname": "column_break_vgbvn",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-30 18:30:39.903484",
+ "modified": "2023-12-06 18:05:25.609539",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Issue",
