@@ -18,22 +18,19 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Unit Location",
-   "options": "Unit Master",
-   "reqd": 1
+   "options": "Unit Master"
   },
   {
    "fieldname": "storage_system_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Storage System ID",
-   "reqd": 1
+   "label": "Storage System ID"
   },
   {
    "fieldname": "storage_system_shelf",
    "fieldtype": "Table",
    "label": "Storage System Shelf",
-   "options": "Storage System Shelf",
-   "reqd": 1
+   "options": "Storage System Shelf"
   },
   {
    "fieldname": "section_break_ancxl",
@@ -42,7 +39,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-18 12:29:52.018951",
+ "modified": "2023-12-07 11:24:50.981143",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Storage System Master",

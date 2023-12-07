@@ -289,10 +289,10 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
     
         let thead = $('<thead class="thead-dark"></thead>').appendTo(table);
         let headerRow = $('<tr></tr>').appendTo(thead);
-        $('<th style="text-align: center; width: 5%;">S.No</th>').appendTo(headerRow); // Use a percentage for the default width
+        $('<th style="text-align: center; width: 5%;">S.No</th>').appendTo(headerRow);
     
         for (let j = 0; j < columns.length; j++) {
-            let columnWidth = columnWidths && columnWidths[j] ? columnWidths[j] + '%' : ''; // Use a percentage or leave it empty
+            let columnWidth = columnWidths && columnWidths[j] ? columnWidths[j] + '%' : '';
             $('<th style="text-align: center; width: ' + columnWidth + ';">' + columns[j] + '</th>').appendTo(headerRow);
         }
     
@@ -408,7 +408,7 @@ frappe.pages['weapon-in-form'].on_page_load = function (wrapper) {
                                         weapon_category: row.find('td:nth-child(2) input').val(),
                                         weapon_name: row.find('td:nth-child(3) input').val(),
                                         rfid_tag: row.find('td:nth-child(4) input').val(),
-                                        unit: row.find('td:nth-child(5) input').val(),
+                                        unit: row.find('td:nth-child(5) select').val(),
                                         serial_number: row.find('td:nth-child(6) input').val(),
                                         butt_number: row.find('td:nth-child(7) input').val(),
                                         storage_id: row.find('td:nth-child(8) select').val(),
