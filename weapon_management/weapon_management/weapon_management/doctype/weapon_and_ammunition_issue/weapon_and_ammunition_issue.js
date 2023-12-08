@@ -242,7 +242,7 @@ frappe.ui.form.on('Weapon and Ammunition Issue', {
         frm.set_value('ammunition_storage_id', '');
         frm.set_value('ammunition_category', '');
 
-        if (frm.doc.weapon_rfid && frm.doc.ammunition_rfid) {
+        if (frm.doc.ammunition_rfid) {
             frappe.call({
                 method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_issue.weapon_and_ammunition_issue.validate_and_get_ammunition_details',
                 args: {
