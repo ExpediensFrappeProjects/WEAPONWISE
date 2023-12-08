@@ -49,9 +49,19 @@ function addCustomIconButton(frm, fieldname) {
     });
 }
 
+var isAmmunitionHandlerRunning = false;
+var isWeaponHandlerRunning = false;
+
 
 frappe.ui.form.on('Weapon and Ammunition Return', {
-    weapon_rfid: function(frm) {
+    ammunition_rfid: function(frm) {
+
+        if (isWeaponHandlerRunning) {
+            return;
+        }
+
+        isAmmunitionHandlerRunning = true;
+
         frm.set_value('issue_document_number','');
         frm.set_value('unit_location','');
         frm.set_value('issue_data_and_time','');
@@ -60,17 +70,17 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
         frm.set_value('duty_start', '');
         frm.set_value('duty_end','');
         frm.set_value('duty_location', '');
-		frm.set_value('personnel_rfid', '');
+        frm.set_value('personnel_rfid', '');
         frm.set_value('personnel_id','');
         frm.set_value('person_name','');
         frm.set_value('rank','');
+        frm.set_value('weapon_rfid','');
         frm.set_value('weapon_category','');
         frm.set_value('weapon_name','');
         frm.set_value('weapon_serial_number','');
         frm.set_value('butt_number','');
         frm.set_value('weapon_storage_id','');
         frm.set_value('weapon_storage_shelf','');
-        frm.set_value('ammunition_rfid','');
         frm.set_value('ammunition_category','');
         frm.set_value('box_number', '');
         frm.set_value('available_quantity','');
@@ -80,9 +90,125 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
         frm.set_value('return_date_and_time','');
 
         var unitLocation;
+        if (frm.doc.ammunition_rfid) {
+            
+            frappe.call({
+                method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details_a',
+                args: {
+                    ammunitionRFID: frm.doc.ammunition_rfid
+                },
+                callback: function(response) {
+                    var issueDetails = response.message;
+                        frm.set_value('issue_document_number',issueDetails[1])
+                        frm.set_value('issue_data_and_time', issueDetails[2]);
+                        frm.set_value('duty_code', issueDetails[3]);
+                        frm.set_value('duty_name', issueDetails[4]);
+                        frm.set_value('duty_start', issueDetails[5]);
+                        frm.set_value('duty_end', issueDetails[6]);
+                        frm.set_value('duty_location', issueDetails[7]);
+                        frm.set_value('personnel_rfid', issueDetails[8]);
+                        frm.set_value('personnel_id', issueDetails[9]);
+                        frm.set_value('person_name', issueDetails[10]);
+                        frm.set_value('rank', issueDetails[11]);
+                        frm.set_value('weapon_rfid', issueDetails[12]);
+                        frm.set_value('weapon_category', issueDetails[13]);
+                        frm.set_value('weapon_name', issueDetails[14]);
+                        frm.set_value('weapon_serial_number', issueDetails[15]);
+                        frm.set_value('butt_number', issueDetails[16]);
+                        frm.set_value('weapon_storage_id', issueDetails[17]);
+                        frm.set_value('weapon_storage_shelf', issueDetails[18]);    
+                        frm.set_value('ammunition_category', issueDetails[19]);
+                        frm.set_value('box_number', issueDetails[20]);
+                        frm.set_value('available_quantity', issueDetails[21]);
+                        frm.set_value('round_per_box', issueDetails[22]);
+                        frm.set_value('ammunition_storage_id', issueDetails[23]);
+                        frm.set_value('ammunition_storage_shelf', issueDetails[24]);
+                        frm.set_value('return_date_and_time',frappe.datetime.now_datetime())
+                        unitLocation = issueDetails[0];
+                        frm.set_value('unit_location', unitLocation);
+
+                        resetAmmunitionHandlerFlag();
+                        
+                        frappe.call({
+                            method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_authorizer',
+                            args: {
+                                unitLocation: frm.doc.unit_location
+                            },
+                            callback: function (response) {
+                                var options = response.message;
+                                frm.set_query("authorized_by", function () {
+                                    return {
+                                        filters: [
+                                            ["Person Master", "name", "in", options]
+                                        ]
+                                    };
+                                });
+                            }
+                        });
+    
+                        frappe.call({
+                            method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_armourer',
+                            args: {
+                                unitLocation: frm.doc.unit_location
+                            },
+                            callback: function (response) {
+                                var options = response.message;
+                                frm.set_query("armourer_id", function () {
+                                    return {
+                                        filters: [
+                                            ["Person Master", "name", "in", options]
+                                        ]
+                                    };
+                                });
+                            }
+                        });
+                }
+            });
+        } else {
+            
+            resetAmmunitionHandlerFlag();
+        }
+    },
+});
+
+
+frappe.ui.form.on('Weapon and Ammunition Return', {
+    weapon_rfid: function(frm) {
+
+        if (isAmmunitionHandlerRunning) {
+            return;
+        }
+        isWeaponHandlerRunning = true;
+
+        frm.set_value('issue_document_number', '');
+        frm.set_value('unit_location', '');
+        frm.set_value('issue_data_and_time', '');
+        frm.set_value('duty_code', '');
+        frm.set_value('duty_name', '');
+        frm.set_value('duty_start', '');
+        frm.set_value('duty_end', '');
+        frm.set_value('duty_location', '');
+        frm.set_value('personnel_rfid', '');
+        frm.set_value('personnel_id', '');
+        frm.set_value('person_name', '');
+        frm.set_value('rank', '');
+        frm.set_value('weapon_category', '');
+        frm.set_value('weapon_name', '');
+        frm.set_value('weapon_serial_number', '');
+        frm.set_value('butt_number', '');
+        frm.set_value('weapon_storage_id', '');
+        frm.set_value('weapon_storage_shelf', '');
+        frm.set_value('ammunition_rfid', '');
+        frm.set_value('ammunition_category', '');
+        frm.set_value('box_number', '');
+        frm.set_value('available_quantity', '');
+        frm.set_value('round_per_box', '');
+        frm.set_value('ammunition_storage_id', '');
+        frm.set_value('ammunition_storage_shelf', '');
+        frm.set_value('return_date_and_time', '');
+
+        var unitLocation;
         if (frm.doc.weapon_rfid) {
-            frm._from_weapon_change = true;
-            frm._from_ammunition_change = false;
             frappe.call({
                 method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details_w',
                 args: {
@@ -90,8 +216,7 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
                 },
                 callback: function(response) {
                     var issueDetails = response.message;
-                    console.log(`${issueDetails}`)
-                    frm.set_value('issue_document_number',issueDetails[1])
+                    frm.set_value('issue_document_number', issueDetails[1]);
                     frm.set_value('issue_data_and_time', issueDetails[2]);
                     frm.set_value('duty_code', issueDetails[3]);
                     frm.set_value('duty_name', issueDetails[4]);
@@ -115,10 +240,12 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
                     frm.set_value('round_per_box', issueDetails[22]);
                     frm.set_value('ammunition_storage_id', issueDetails[23]);
                     frm.set_value('ammunition_storage_shelf', issueDetails[24]);
-                    frm.set_value('return_date_and_time',frappe.datetime.now_datetime())
+                    frm.set_value('return_date_and_time', frappe.datetime.now_datetime());
                     unitLocation = issueDetails[0];
                     frm.set_value('unit_location', unitLocation);
 
+                    resetWeaponHandlerFlag();
+                    
                     frappe.call({
                         method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_authorizer',
                         args: {
@@ -154,120 +281,24 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
                     });
                 }
             });
+        }else {
+            resetWeaponHandlerFlag();
         }
-    },
-    ammunition_rfid: function(frm) {
-        if (!frm._from_weapon_change) {
-            frm.set_value('issue_document_number','');
-            frm.set_value('unit_location','');
-            frm.set_value('issue_data_and_time','');
-            frm.set_value('duty_code','');
-            frm.set_value('duty_name','');
-            frm.set_value('duty_start', '');
-            frm.set_value('duty_end','');
-            frm.set_value('duty_location', '');
-			frm.set_value('personnel_rfid', '');
-            frm.set_value('personnel_id','');
-            frm.set_value('person_name','');
-            frm.set_value('rank','');
-            frm.set_value('weapon_rfid','');
-            frm.set_value('weapon_category','');
-            frm.set_value('weapon_name','');
-            frm.set_value('weapon_serial_number','');
-            frm.set_value('butt_number','');
-            frm.set_value('weapon_storage_id','');
-            frm.set_value('weapon_storage_shelf','');
-            frm.set_value('ammunition_category','');
-            frm.set_value('box_number', '');
-            frm.set_value('available_quantity','');
-            frm.set_value('round_per_box','');
-            frm.set_value('ammunition_storage_id','');
-            frm.set_value('ammunition_storage_shelf','');
-            frm.set_value('return_date_and_time','');
-
-            var unitLocation;
-            if (frm.doc.ammunition_rfid) {
-                frm._from_ammunition_change = true;
-                frm._from_weapon_change = false;
-                frappe.call({
-                    method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_issue_details_a',
-                    args: {
-                        ammunitionRFID: frm.doc.ammunition_rfid
-                    },
-                    callback: function(response) {
-                        var issueDetails = response.message;
-                        console.log(`${issueDetails}`)
-                        frm.set_value('issue_document_number',issueDetails[1])
-                        frm.set_value('issue_data_and_time', issueDetails[2]);
-                        frm.set_value('duty_code', issueDetails[3]);
-                        frm.set_value('duty_name', issueDetails[4]);
-                        frm.set_value('duty_start', issueDetails[5]);
-                        frm.set_value('duty_end', issueDetails[6]);
-                        frm.set_value('duty_location', issueDetails[7]);
-                        frm.set_value('personnel_rfid', issueDetails[8]);
-                        frm.set_value('personnel_id', issueDetails[9]);
-                        frm.set_value('person_name', issueDetails[10]);
-                        frm.set_value('rank', issueDetails[11]);
-                        frm.set_value('weapon_rfid', issueDetails[12]);
-                        frm.set_value('weapon_category', issueDetails[13]);
-                        frm.set_value('weapon_name', issueDetails[14]);
-                        frm.set_value('weapon_serial_number', issueDetails[15]);
-                        frm.set_value('butt_number', issueDetails[16]);
-                        frm.set_value('weapon_storage_id', issueDetails[17]);
-                        frm.set_value('weapon_storage_shelf', issueDetails[18]);    
-                        frm.set_value('ammunition_category', issueDetails[19]);
-                        frm.set_value('box_number', issueDetails[20]);
-                        frm.set_value('available_quantity', issueDetails[21]);
-                        frm.set_value('round_per_box', issueDetails[22]);
-                        frm.set_value('ammunition_storage_id', issueDetails[23]);
-                        frm.set_value('ammunition_storage_shelf', issueDetails[24]);
-                        frm.set_value('return_date_and_time',frappe.datetime.now_datetime())
-                        unitLocation = issueDetails[0];
-                        frm.set_value('unit_location', unitLocation);
-
-                        frappe.call({
-                            method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_authorizer',
-                            args: {
-                                unitLocation: frm.doc.unit_location
-                            },
-                            callback: function (response) {
-                                var options = response.message;
-                                frm.set_query("authorized_by", function () {
-                                    return {
-                                        filters: [
-                                            ["Person Master", "name", "in", options]
-                                        ]
-                                    };
-                                });
-                            }
-                        });
-
-                        frappe.call({
-                            method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_armourer',
-                            args: {
-                                unitLocation: frm.doc.unit_location
-                            },
-                            callback: function (response) {
-                                var options = response.message;
-                                frm.set_query("armourer_id", function () {
-                                    return {
-                                        filters: [
-                                            ["Person Master", "name", "in", options]
-                                        ]
-                                    };
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    },
-    after_save: function(frm) {
-        frm._from_weapon_change = false;
-        frm._from_ammunition_change = false;
     }
 });
+
+
+function resetAmmunitionHandlerFlag() {
+    setTimeout(function () {
+        isAmmunitionHandlerRunning = false;
+    }, 0);
+}
+
+function resetWeaponHandlerFlag() {
+    setTimeout(function () {
+        isWeaponHandlerRunning = false;
+    }, 0);
+}
 
 
 frappe.ui.form.on("Weapon and Ammunition Return", {
