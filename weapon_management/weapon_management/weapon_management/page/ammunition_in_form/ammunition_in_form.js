@@ -79,7 +79,7 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
                     const selectedAmmunitionCategory = ammunitionCategory.get_value();
                     if (!tableContainer.find('table').length) {
                         let columnWidths = [12, 10, 25, 6, 12, 8, 12, 12]; 
-                        createModernTable(tableContainer, ['Ammunition Category', 'RFID Tag','Ammunition Box ID','Round Per Box/Total Quantity', 'Storage ID', 'Shelf'], quantityValue, selectedAmmunitionCategory, columnWidths);
+                        createModernTable(tableContainer, ['Ammunition Category', 'RFID Tag','Ammunition Box ID','Total Rounds Per Box', 'Storage ID', 'Shelf'], quantityValue, selectedAmmunitionCategory, columnWidths);
                     } else {
                         addRowsToTable(tableContainer, quantityValue, selectedAmmunitionCategory);
                     }
@@ -121,7 +121,7 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
             return;
         }
         frappe.call({
-            method: 'weapon_management.weapon_management.page.weapon_in_form.weapon_in_form.save_weapon_in_document',
+            method: 'weapon_management.weapon_management.page.ammunition_in_form.ammunition_in_form.save_ammunition_in_document',
             args: {
                 doc_values: docValues,
                 details_data: detailsData
@@ -371,13 +371,16 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
                                         ammunition_category: row.find('td:nth-child(2) input').val(),
                                         rfid_tag: row.find('td:nth-child(3) input').val(),
                                         ammunition_box_id: row.find('td:nth-child(4) input').val(),
-                                        round_per_box: row.find('td:nth-child(5) input').val(),
-										available_quantity: row.find('td:nth-child(5) input').val(),
+                                        total_rounds_per_box: row.find('td:nth-child(5) input').val(),
+										available_rounds_per_box: row.find('td:nth-child(5) input').val(),
                                         storage_id: row.find('td:nth-child(6) select').val(),
                                         shelf: row.find('td:nth-child(7) select').val(),
                                         date_acquired: acquiredDate.get_value(),
                                         status: 'Available',
-                                        unit_location: unitLocation.get_value()
+                                        unit_location: unitLocation.get_value(),
+                                        total_empty_cases_returned: 0,
+                                        total_empty_cases_lost:0
+
                                     };
                                     detailsData.push(rowData);
                                 });
