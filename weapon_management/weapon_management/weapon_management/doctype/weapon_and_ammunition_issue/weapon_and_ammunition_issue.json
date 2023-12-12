@@ -42,7 +42,7 @@
   "box_number",
   "qauntity",
   "column_break_vgbvn",
-  "available_quantity",
+  "rounds_issued",
   "round_per_box",
   "ammunition_storage_id",
   "ammunition_storage_shelf",
@@ -231,12 +231,6 @@
    "label": "Qauntity"
   },
   {
-   "fieldname": "available_quantity",
-   "fieldtype": "Int",
-   "label": "Available Quantity",
-   "read_only": 1
-  },
-  {
    "fieldname": "round_per_box",
    "fieldtype": "Int",
    "label": "Round Per Box",
@@ -350,12 +344,18 @@
   {
    "fieldname": "column_break_vgbvn",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rounds_issued",
+   "fieldtype": "Int",
+   "label": "Rounds Issued",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-06 18:05:25.609539",
+ "modified": "2023-12-12 15:58:18.478490",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Issue",

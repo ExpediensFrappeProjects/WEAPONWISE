@@ -38,17 +38,18 @@
   "weapon_storage_id",
   "weapon_storage_shelf",
   "section_break_8wiff",
+  "click_to_return_ammunition",
   "ammunition_rfid",
-  "ammunition_storage_shelf",
   "box_number",
-  "available_quantity",
-  "quantity_used",
-  "empty_case_returned",
+  "rounds_issued",
+  "rounds_returned",
+  "rounds_used",
   "column_break_nysc2",
+  "ammunition_storage_shelf",
   "ammunition_category",
   "ammunition_storage_id",
   "round_per_box",
-  "returned",
+  "empty_case_returned",
   "empty_case_balance",
   "checkout_details_section",
   "authorized_by",
@@ -239,7 +240,8 @@
   {
    "fieldname": "ammunition_rfid",
    "fieldtype": "Data",
-   "label": "Ammunition RFID"
+   "label": "Ammunition RFID",
+   "read_only": 1
   },
   {
    "fieldname": "ammunition_category",
@@ -252,25 +254,6 @@
    "fieldname": "box_number",
    "fieldtype": "Data",
    "label": "Box Number",
-   "read_only": 1
-  },
-  {
-   "fieldname": "available_quantity",
-   "fieldtype": "Int",
-   "label": "Aavailable Quantity",
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.ammunition_rfid != null",
-   "fieldname": "returned",
-   "fieldtype": "Int",
-   "label": "Returned"
-  },
-  {
-   "depends_on": "eval:doc.returned < doc.available_quantity",
-   "fieldname": "quantity_used",
-   "fieldtype": "Int",
-   "label": "Quantity Used",
    "read_only": 1
   },
   {
@@ -331,17 +314,17 @@
   {
    "fieldname": "personnel_rfid",
    "fieldtype": "Data",
-   "label": "Personnel RFID",
-   "read_only": 1
+   "label": "Personnel RFID"
   },
   {
-   "depends_on": "eval:doc.returned < doc.available_quantity",
+   "depends_on": "eval:doc.rounds_returned < doc.rounds_issued",
    "fieldname": "empty_case_returned",
    "fieldtype": "Int",
-   "label": "Empty Case Returned"
+   "label": "Empty Case Returned",
+   "mandatory_depends_on": "eval:doc.rounds_used > 0;"
   },
   {
-   "depends_on": "eval:doc.empty_case_returned < doc.quantity_used",
+   "depends_on": "eval:doc.empty_case_returned < doc.rounds_issued",
    "fieldname": "empty_case_balance",
    "fieldtype": "Int",
    "label": "Empty Case Balance",
@@ -364,12 +347,37 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "click_to_return_ammunition",
+   "fieldtype": "Button",
+   "label": "Click To Return Ammunition"
+  },
+  {
+   "depends_on": "eval:doc.ammunition_rfid;",
+   "fieldname": "rounds_returned",
+   "fieldtype": "Int",
+   "label": "Rounds Returned",
+   "mandatory_depends_on": "eval:doc.rounds_issued;"
+  },
+  {
+   "fieldname": "rounds_issued",
+   "fieldtype": "Int",
+   "label": "Rounds Issued",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.rounds_returned < doc.rounds_issued",
+   "fieldname": "rounds_used",
+   "fieldtype": "Int",
+   "label": "Rounds Used",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-07 17:21:21.162203",
+ "modified": "2023-12-12 16:31:40.537076",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",
