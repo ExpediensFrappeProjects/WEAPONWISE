@@ -1,0 +1,200 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2023-12-13 10:45:14.919744",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "kote_incharge_details_section",
+  "personnel_rfid",
+  "personnel_id",
+  "column_break_fjw3j",
+  "person_name",
+  "rank",
+  "issue_details_section",
+  "unit_location",
+  "column_break_zmrao",
+  "issued_date",
+  "ammunition_details_section",
+  "ammunition_rfid",
+  "ammunition_box_id",
+  "manufacturer",
+  "storage_id",
+  "total_rounds_per_box",
+  "total_empty_cases_returned",
+  "column_break_eftzw",
+  "ammunition_category",
+  "available_rounds_per_box",
+  "date_acquired",
+  "manufacturing_date",
+  "shelf",
+  "total_empty_cases_lost"
+ ],
+ "fields": [
+  {
+   "fieldname": "kote_incharge_details_section",
+   "fieldtype": "Section Break",
+   "label": "KOTE InCharge Details"
+  },
+  {
+   "fieldname": "personnel_rfid",
+   "fieldtype": "Data",
+   "label": "Personnel RFID"
+  },
+  {
+   "fieldname": "personnel_id",
+   "fieldtype": "Link",
+   "label": "Personnel ID",
+   "options": "Person Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fjw3j",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "label": "Person Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rank",
+   "fieldtype": "Link",
+   "label": "Rank",
+   "options": "Rank Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issue_details_section",
+   "fieldtype": "Section Break",
+   "label": "Issue Details"
+  },
+  {
+   "fieldname": "unit_location",
+   "fieldtype": "Link",
+   "label": "Unit Location",
+   "options": "Unit Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zmrao",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "issued_date",
+   "fieldtype": "Date",
+   "label": "Issued Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_details_section",
+   "fieldtype": "Section Break",
+   "label": "Ammunition Details"
+  },
+  {
+   "fieldname": "ammunition_category",
+   "fieldtype": "Link",
+   "label": "Ammunition Category",
+   "options": "Ammunition Category Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_box_id",
+   "fieldtype": "Data",
+   "label": "Ammunition Box ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Data",
+   "label": "Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manufacturing_date",
+   "fieldtype": "Date",
+   "label": "Manufacturing Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_rounds_per_box",
+   "fieldtype": "Int",
+   "label": "Total Rounds Per Box",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eftzw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "available_rounds_per_box",
+   "fieldtype": "Int",
+   "label": "Available Rounds Per Box",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_acquired",
+   "fieldtype": "Date",
+   "label": "Date Acquired",
+   "read_only": 1
+  },
+  {
+   "fieldname": "storage_id",
+   "fieldtype": "Link",
+   "label": "Storage ID",
+   "options": "Storage System Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shelf",
+   "fieldtype": "Data",
+   "label": "Shelf",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_empty_cases_returned",
+   "fieldtype": "Int",
+   "label": "Total Empty Cases Returned",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_empty_cases_lost",
+   "fieldtype": "Int",
+   "label": "Total Empty Cases Lost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_rfid",
+   "fieldtype": "Data",
+   "label": "Ammunition RFID"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-13 11:44:42.459689",
+ "modified_by": "Administrator",
+ "module": "Weapon Management",
+ "name": "Ammunition Issue To KOTE InCharge",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

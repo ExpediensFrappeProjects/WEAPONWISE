@@ -180,30 +180,6 @@ frappe.ui.form.on('Weapon and Ammunition Return', {
     }
 });
 
-// frappe.ui.form.on('Weapon and Ammunition Return', {
-//     click_to_return_ammunition: function(frm) {
-//         console.log('Button clicked!');
-//         if (frm.doc.personnel_rfid){
-//             frappe.call({
-//                 method:'weapon_management.weapon_management.doctype.weapon_and_ammunition_return.weapon_and_ammunition_return.get_ammunition_details',
-//                 args: {
-//                     personnelRFID:frm.doc.personnel_rfid,
-//                     issueDocNumber:frm.doc.issue_document_number
-//                 },
-//                 callback: function(response) {
-//                     var issueDetails = response.message;    
-//                         frm.set_value('ammunition_rfid', issueDetails[0]);
-//                         frm.set_value('ammunition_category', issueDetails[1]);
-//                         frm.set_value('box_number', issueDetails[2]);
-//                         frm.set_value('rounds_issued', issueDetails[3]);
-//                         frm.set_value('round_per_box', issueDetails[4]);
-//                         frm.set_value('ammunition_storage_id', issueDetails[5]);
-//                         frm.set_value('ammunition_storage_shelf', issueDetails[6]);
-//                 }
-//             });
-//         }
-//     }
-// });
 
 frappe.ui.form.on('Weapon and Ammunition Return', {
     click_to_return_ammunition: function(frm) {
