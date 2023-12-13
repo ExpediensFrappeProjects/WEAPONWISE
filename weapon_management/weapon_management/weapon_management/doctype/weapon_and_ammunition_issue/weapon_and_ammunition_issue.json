@@ -8,9 +8,9 @@
  "engine": "InnoDB",
  "field_order": [
   "unit_location_details_section",
-  "issue_document_number",
-  "column_break_ry05k",
   "unit_location",
+  "column_break_ry05k",
+  "issue_document_number",
   "column_break_oypk9",
   "date_and_time",
   "duty_details_section",
@@ -33,19 +33,17 @@
   "weapon_name",
   "weapon_serial_number",
   "column_break_sgarx",
+  "weapon_butt_number",
   "weapon_storage_id",
-  "butt_number",
   "weapon_storage_shelf",
   "ammunition_details_section",
   "ammunition_rfid",
   "ammunition_category",
-  "box_number",
-  "qauntity",
+  "ammunition_box_id",
   "column_break_vgbvn",
-  "rounds_issued",
-  "round_per_box",
   "ammunition_storage_id",
   "ammunition_storage_shelf",
+  "rounds_issued",
   "checkout_details_section",
   "authorized_by",
   "armourer_id",
@@ -91,7 +89,8 @@
    "fieldname": "date_and_time",
    "fieldtype": "Datetime",
    "label": "Date  and Time",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "duty_details_section",
@@ -190,12 +189,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "butt_number",
-   "fieldtype": "Data",
-   "label": "Weapon Butt Number",
-   "read_only": 1
-  },
-  {
    "fieldname": "weapon_storage_id",
    "fieldtype": "Link",
    "label": "Weapon Storage ID ",
@@ -217,24 +210,6 @@
    "fieldname": "ammunition_rfid",
    "fieldtype": "Data",
    "label": "Ammunition RFID"
-  },
-  {
-   "fieldname": "box_number",
-   "fieldtype": "Data",
-   "label": "Box Number",
-   "read_only": 1
-  },
-  {
-   "fieldname": "qauntity",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Qauntity"
-  },
-  {
-   "fieldname": "round_per_box",
-   "fieldtype": "Int",
-   "label": "Round Per Box",
-   "read_only": 1
   },
   {
    "fieldname": "ammunition_storage_id",
@@ -346,16 +321,29 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.ammunition_rfid;",
    "fieldname": "rounds_issued",
    "fieldtype": "Int",
    "label": "Rounds Issued",
+   "mandatory_depends_on": "eval:doc.ammunition_rfid;"
+  },
+  {
+   "fieldname": "weapon_butt_number",
+   "fieldtype": "Data",
+   "label": "Weapon Butt Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_box_id",
+   "fieldtype": "Data",
+   "label": "Ammunition Box ID",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-12 15:58:18.478490",
+ "modified": "2023-12-13 17:07:46.861123",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Issue",

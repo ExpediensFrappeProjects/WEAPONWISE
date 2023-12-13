@@ -60,17 +60,17 @@ frappe.ui.form.on('Ammunition Issue To KOTE InCharge',{
 						frm.set_value('ammunition_rfid','')
 						frappe.throw('Wrong Personnel RFID.')
 					} else {
-						frm.set_value('ammunition_category', '');
-						frm.set_value('ammunition_box_id', '');
-						frm.set_value('date_acquired', '');
-						frm.set_value('total_rounds_per_box', ''); 
-						frm.set_value('available_rounds_per_box', '');
-						frm.set_value('manufacturer', '');
-						frm.set_value('manufacturing_date', '');
-						frm.set_value('total_empty_cases_returned', '');
-						frm.set_value('total_empty_cases_lost', '');
-						frm.set_value('storage_id', '');
-						frm.set_value('shelf', '');
+						frm.set_value('ammunition_category', ammunitionDetails[0]);
+						frm.set_value('ammunition_box_id', ammunitionDetails[1]);
+						frm.set_value('date_acquired', ammunitionDetails[2]);
+						frm.set_value('total_rounds_per_box', ammunitionDetails[3]); 
+						frm.set_value('available_rounds_per_box', ammunitionDetails[4]);
+						frm.set_value('manufacturer', ammunitionDetails[5]);
+						frm.set_value('manufacturing_date', ammunitionDetails[6]);
+						frm.set_value('total_empty_cases_returned', ammunitionDetails[7]);
+						frm.set_value('total_empty_cases_lost', ammunitionDetails[8]);
+						frm.set_value('storage_id', ammunitionDetails[9]);
+						frm.set_value('shelf', ammunitionDetails[10]);
 					}
 
 				}

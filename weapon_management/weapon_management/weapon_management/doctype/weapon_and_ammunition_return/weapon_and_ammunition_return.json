@@ -361,6 +361,7 @@
    "mandatory_depends_on": "eval:doc.rounds_issued;"
   },
   {
+   "depends_on": "eval:doc.ammunition_rfid;",
    "fieldname": "rounds_issued",
    "fieldtype": "Int",
    "label": "Rounds Issued",
@@ -377,7 +378,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-12 16:31:40.537076",
+ "modified": "2023-12-13 18:28:23.363999",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",

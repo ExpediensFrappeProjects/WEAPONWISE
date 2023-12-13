@@ -65,7 +65,7 @@ def save_ammunition_in_document(doc_values, details_data):
             doc.append('ammunition_in_details', data)
         else:
             frappe.throw(f"Please Enter Correct Information")
-
+    frappe.msgprint(str(doc))
     doc.insert(ignore_permissions=True) 
     frappe.db.commit()
     
