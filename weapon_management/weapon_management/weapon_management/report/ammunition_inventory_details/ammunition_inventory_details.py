@@ -17,8 +17,8 @@
 #             tum.unit_location AS "Unit Location",
 # 			tum.unit_id as "Unit_ID",
 #             tacm.ammunition_category AS "Ammunition Category",
-#             taid.available_quantity AS "Available Ammunition",
-#             taid.total_quantity AS "Total Ammunition",
+#             taid.available_rounds_per_box AS "Available Ammunition",
+#             taid.total_rounds_per_box AS "Total Ammunition",
 #             taid.date_acquired AS "Acquired Date",
 #             twaai.creation AS "Last Issue Date",
 #             twaai.person_name AS "Last Issued To"
@@ -72,8 +72,8 @@ def execute(filters=None):
             tum.unit_location AS "Unit Location",
             tum.unit_id as "Unit ID",
             tacm.ammunition_category AS "Ammunition Category",
-            taid.available_quantity AS "Available Ammunition",
-            taid.total_quantity AS "Total Ammunition",
+            taid.available_rounds_per_box AS "Available Ammunition",
+            taid.total_rounds_per_box AS "Total Ammunition",
             taid.date_acquired AS "Acquired Date",
             twaai.creation AS "Last Issue Date",
             twaai.person_name AS "Last Issued To"
