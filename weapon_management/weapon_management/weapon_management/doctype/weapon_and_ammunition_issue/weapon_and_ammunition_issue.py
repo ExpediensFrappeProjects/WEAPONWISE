@@ -10,19 +10,6 @@ from frappe import _
 
 class WeaponandAmmunitionIssue(Document):
 
-    # def autoname(self):
-    #     # Get the current value of the autoname counter
-    #     current_count = frappe.get_single('Auto Repeat').get_autoname(self.doctype)
-
-    #     # Set the autoname for the 'issue_document_number' field
-    #     self.issue_document_number = f"Issue-{current_count}"
-    #     self.name = f"Issue-{current_count}"
-
-    #     # Increment the autoname counter for the next document
-    #     frappe.get_single('Auto Repeat').increment_series(self.doctype)
-
-    
-
     def before_submit(self):
         weaponRFID = self.weapon_rfid
         frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Issued"})
@@ -30,11 +17,14 @@ class WeaponandAmmunitionIssue(Document):
         personRFID = self.personnel_rfid
         frappe.db.set_value("Person Master", {"rf_id": personRFID}, {"weapon_issue_status": "Active"})
     
+
     def validate(self):
-        if self.weapon_rfid or self.ammunition_rfid:
-            pass
-        else:
+        if not (self.weapon_rfid or self.ammunition_rfid):
             frappe.throw("Please Enter Weapon RFID or Ammunition RFID or Both.")
+        
+        if self.rounds_issued <= 0:
+            frappe.throw("Rounds Issued must be a positive integer.")
+
 
 
 
@@ -52,30 +42,35 @@ def duty_details(dutyCode):
     return getDutyDetails
 
 
-@frappe.whitelist()
-def get_rfid(dutyCode):
-    sql_query = f"""
-            SELECT tpm.rf_id
-            FROM "tabPerson Master" tpm
-            INNER JOIN "tabDuty Persons Details" tdpd ON tpm.name = tdpd.personnel_id
-            INNER JOIN "tabDuty Creation" tdc ON tdpd.parent = tdc.name
-            WHERE tdc.name = %s
-            """
-    rf_ids = frappe.db.sql(sql_query, dutyCode, as_dict=False)
-    return [rf_id[0] for rf_id in rf_ids]
+# @frappe.whitelist()
+# def get_rfid(dutyCode):
+#     sql_query = f"""
+#             SELECT tpm.rf_id
+#             FROM "tabPerson Master" tpm
+#             INNER JOIN "tabDuty Persons Details" tdpd ON tpm.name = tdpd.personnel_id
+#             INNER JOIN "tabDuty Creation" tdc ON tdpd.parent = tdc.name
+#             WHERE tdc.name = %s
+#             """
+#     rf_ids = frappe.db.sql(sql_query, dutyCode, as_dict=False)
+#     return [rf_id[0] for rf_id in rf_ids]
 
 
 @frappe.whitelist()
-def get_personnels_details(personnelRFID):
-    personnelsDetails = frappe.get_value("Person Master", {"rf_id": personnelRFID, "weapon_issue_status":"Inactive"}, ['name','full_name','rank'])
+def get_personnels_details(personnelRFID, unitLocation=None):
+    if unitLocation is None:
+        return 2
+        
+    personnelsDetails = frappe.get_value("Person Master", {"rf_id": personnelRFID, "weapon_issue_status": "Inactive"}, ['name', 'full_name', 'rank'])
+
     if personnelsDetails is None:
         return 1
     else:
         return personnelsDetails
 
 
+
 @frappe.whitelist()
-def get_weapon_details(weaponRFID, unitLocation):
+def get_weapon_details(weaponRFID,unitLocation):
     # weaponCategoryAssignedList = frappe.get_all("Weapon Category Assigned List", filters={"parent": personnelID}, fields=['weapon_category'])
     # weaponCategoryAssignedList = [weaponCategory['weapon_category'] for weaponCategory in weaponCategoryAssignedList]
     weaponDetails = frappe.get_value("Weapon In Details", {"rfid_tag": weaponRFID,"status":"Available","unit_location":unitLocation}, 
@@ -95,7 +90,7 @@ def get_weapon_details(weaponRFID, unitLocation):
 
 def validate_and_get_ammunition_details(ammunition_rfid,unitLocation):
     # ammunitionCategory = frappe.get_value("Weapon Master", {"weapon_category": weaponCategory,"weapon_name":weaponName}, ['ammunition_category'])
-    ammunitionDetails = frappe.get_value("Ammunition In Details", {"rfid_tag": ammunition_rfid,"unit_location":unitLocation}, ['ammunition_category', 'ammunition_box_id', 'available_quantity', 'round_per_box', 'storage_id', 'shelf'])
+    ammunitionDetails = frappe.get_value("Ammunition In Details", {"rfid_tag": ammunition_rfid,"unit_location":unitLocation}, ['ammunition_category', 'ammunition_box_id','storage_id', 'shelf'])
     if ammunitionDetails is None:
         return 1
     # ammunitionCategorySelected = ammunitionDetails[0]
@@ -128,20 +123,20 @@ def get_person_name(person_id):
 
 
 @frappe.whitelist()
-def  get_issue_doc_num():
-
-    
+def get_issue_doc_num():
     last_document = frappe.db.get_list(doctype='Weapon and Ammunition Issue', limit=1, order_by='creation desc')
 
-    doc = frappe.db.get_value("Weapon and Ammunition Issue",last_document[0].name, "issue_document_number")
-    
-    if doc:
-        prefix = "Issue"
-        current_return_number = int(doc[len(prefix):])
-        next_return_number = current_return_number + 1
-        return_doc_num = f"{prefix}{next_return_number}"
+    if last_document:
+        doc = frappe.db.get_value("Weapon and Ammunition Issue", last_document[0].name, "issue_document_number")
+
+        if doc:
+            prefix = "Issue"
+            current_return_number = int(doc[len(prefix):])
+            next_return_number = current_return_number + 1
+            return_doc_num = f"{prefix}{next_return_number}"
+        else:
+            return_doc_num = "Issue1"
     else:
         return_doc_num = "Issue1"
 
     return return_doc_num
-

@@ -79,7 +79,7 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
                     const selectedAmmunitionCategory = ammunitionCategory.get_value();
                     if (!tableContainer.find('table').length) {
                         let columnWidths = [12, 10, 25, 6, 12, 8, 12, 12]; 
-                        createModernTable(tableContainer, ['Ammunition Category', 'RFID Tag','Ammunition Box ID','Total Rounds Per Box', 'Storage ID', 'Shelf'], quantityValue, selectedAmmunitionCategory, columnWidths);
+                        createModernTable(tableContainer, ['Ammunition Category', 'RFID Tag','Ammunition Box ID','Total Rounds Per Box', 'Manufacturer', 'Manufacturing Date', 'Storage ID', 'Shelf'], quantityValue, selectedAmmunitionCategory, columnWidths);
                     } else {
                         addRowsToTable(tableContainer, quantityValue, selectedAmmunitionCategory);
                     }
@@ -250,7 +250,7 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
         for (let k = 0; k < storageIDS.length; k++) {
             $('<option value="' + storageIDS[k] + '">' + storageIDS[k] + '</option>').appendTo(selectField);
         }
-        rowElement.find('td:nth-child(7)').html(selectField);
+        rowElement.find('td:nth-child(9)').html(selectField);
     }
     
     function setShelfOptions(rowElement, storageIDS) {
@@ -304,10 +304,10 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
 
                 $('<td style="text-align: center;">' + currentSerialNumber + '</td>').appendTo(row);
 
-                for (let j = 0; j < 6; j++) {
+                for (let j = 0; j < 8; j++) {
                     let inputField;
 
-                    if (j === 4) {
+                    if (j === 6) {
                         inputField = $('<select class="form-control"></select>');
                         $('<option value="">Select Storage ID</option>').appendTo(inputField);
 
@@ -319,7 +319,7 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
                             const selectedStorageID = $(this).val();
                             fetchShelf(selectedStorageID, row);
                         });
-                    } else if (j === 5) {
+                    } else if (j === 7) {
                         inputField = $('<select class="form-control"></select>');
                         $('<option value="">Select Shelf</option>').appendTo(inputField);
                   
@@ -373,8 +373,10 @@ frappe.pages['ammunition-in-form'].on_page_load = function(wrapper) {
                                         ammunition_box_id: row.find('td:nth-child(4) input').val(),
                                         total_rounds_per_box: row.find('td:nth-child(5) input').val(),
 										available_rounds_per_box: row.find('td:nth-child(5) input').val(),
-                                        storage_id: row.find('td:nth-child(6) select').val(),
-                                        shelf: row.find('td:nth-child(7) select').val(),
+                                        manufacturer: row.find('td:nth-child(6) input').val(),
+                                        manufacturing_date: row.find('td:nth-child(7) input').val(),
+                                        storage_id: row.find('td:nth-child(8) select').val(),
+                                        shelf: row.find('td:nth-child(9) select').val(),
                                         date_acquired: acquiredDate.get_value(),
                                         status: 'Available',
                                         unit_location: unitLocation.get_value(),

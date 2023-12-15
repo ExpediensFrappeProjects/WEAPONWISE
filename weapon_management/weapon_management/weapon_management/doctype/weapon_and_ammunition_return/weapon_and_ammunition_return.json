@@ -34,21 +34,20 @@
   "weapon_name",
   "column_break_enzox",
   "weapon_serial_number",
-  "butt_number",
+  "weapon_butt_number",
   "weapon_storage_id",
   "weapon_storage_shelf",
   "section_break_8wiff",
   "click_to_return_ammunition",
   "ammunition_rfid",
-  "box_number",
+  "ammunition_box_id",
   "rounds_issued",
   "rounds_returned",
   "rounds_used",
   "column_break_nysc2",
-  "ammunition_storage_shelf",
   "ammunition_category",
   "ammunition_storage_id",
-  "round_per_box",
+  "ammunition_storage_shelf",
   "empty_case_returned",
   "empty_case_balance",
   "checkout_details_section",
@@ -214,12 +213,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "butt_number",
-   "fieldtype": "Data",
-   "label": "Butt Number",
-   "read_only": 1
-  },
-  {
    "fieldname": "weapon_storage_id",
    "fieldtype": "Link",
    "label": "Weapon Storage ID ",
@@ -248,18 +241,6 @@
    "fieldtype": "Link",
    "label": "Ammunition Category",
    "options": "Ammunition Category Master",
-   "read_only": 1
-  },
-  {
-   "fieldname": "box_number",
-   "fieldtype": "Data",
-   "label": "Box Number",
-   "read_only": 1
-  },
-  {
-   "fieldname": "round_per_box",
-   "fieldtype": "Data",
-   "label": "Round Per Box",
    "read_only": 1
   },
   {
@@ -361,6 +342,7 @@
    "mandatory_depends_on": "eval:doc.rounds_issued;"
   },
   {
+   "depends_on": "eval:doc.ammunition_rfid;",
    "fieldname": "rounds_issued",
    "fieldtype": "Int",
    "label": "Rounds Issued",
@@ -372,12 +354,24 @@
    "fieldtype": "Int",
    "label": "Rounds Used",
    "read_only": 1
+  },
+  {
+   "fieldname": "weapon_butt_number",
+   "fieldtype": "Data",
+   "label": "Butt Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ammunition_box_id",
+   "fieldtype": "Data",
+   "label": "Ammunition Box ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-12 16:31:40.537076",
+ "modified": "2023-12-14 11:43:44.840093",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Weapon and Ammunition Return",

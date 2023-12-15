@@ -19,7 +19,8 @@
   "storage_id",
   "shelf",
   "total_empty_cases_returned",
-  "total_empty_cases_lost"
+  "total_empty_cases_lost",
+  "status"
  ],
  "fields": [
   {
@@ -89,12 +90,20 @@
    "fieldname": "total_empty_cases_lost",
    "fieldtype": "Int",
    "label": "Total Empty Cases Lost"
+  },
+  {
+   "default": "Available",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "Available\nIssued to KOTE In-Charge"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-12 17:18:37.753383",
+ "modified": "2023-12-13 13:22:51.748395",
  "modified_by": "Administrator",
  "module": "Weapon Management",
  "name": "Ammunition In Details",

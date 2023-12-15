@@ -5,16 +5,30 @@ import frappe
 from frappe.model.document import Document
 
 class WeaponandAmmunitionReturn(Document):
-	def before_submit(self):
-		# roundsReturned = self.rounds_returned
-		# ammunitionRFID = self.ammunition_rfid
-		# frappe.db.set_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, {"rounds_issued": roundsReturned})
+    def before_submit(self):
+        roundsReturned = self.rounds_returned
+        emptyCaseReturned = self.empty_case_returned
+        emptyCaseBalanced = self.empty_case_balance
 
-		weaponRFID = self.weapon_rfid
-		frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Available"})
+        ammunitionRFID = self.ammunition_rfid
+        ammunitionQuantities = frappe.db.get_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, ["available_rounds_per_box","total_empty_cases_returned","total_empty_cases_lost"])
+        
+        availableRounds = ammunitionQuantities[0]
+        availableRounds+= roundsReturned
 
-		personID = self.personnel_id
-		frappe.db.set_value("Person Master", {"name": personID}, {"weapon_issue_status": "Inactive"})
+        totalEmptyCaseReturned = ammunitionQuantities[1]
+        totalEmptyCaseReturned+= emptyCaseReturned
+
+        totalEmptyCaseLost = ammunitionQuantities[2]
+        totalEmptyCaseLost+= emptyCaseBalanced
+
+        frappe.db.set_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, {"available_rounds_per_box": availableRounds, "total_empty_cases_returned":totalEmptyCaseReturned,"total_empty_cases_lost":totalEmptyCaseLost})
+
+        weaponRFID = self.weapon_rfid
+        frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Available"})
+
+        personID = self.personnel_id
+        frappe.db.set_value("Person Master", {"name": personID}, {"weapon_issue_status": "Inactive"})
 
 
 @frappe.whitelist()
@@ -36,7 +50,7 @@ def get_issue_details(personnelRFID):
 @frappe.whitelist()
 def get_weapon_details(personnelRFID, issueDocNumber):
     sql_query = """
-                SELECT weapon_rfid, weapon_category, weapon_name, weapon_serial_number, butt_number, weapon_storage_id, weapon_storage_shelf
+                SELECT weapon_rfid, weapon_category, weapon_name, weapon_serial_number, weapon_butt_number, weapon_storage_id, weapon_storage_shelf
                 FROM `tabWeapon and Ammunition Issue`
                 WHERE personnel_rfid = %(personnelRFID)s and issue_document_number = %(issueDocNumber)s
                 ORDER BY date_and_time DESC 
@@ -49,7 +63,7 @@ def get_weapon_details(personnelRFID, issueDocNumber):
 @frappe.whitelist()
 def get_ammunition_details(personnelRFID, issueDocNumber):
     sql_query = """
-                SELECT ammunition_rfid,ammunition_category,box_number,rounds_issued,round_per_box,ammunition_storage_id,ammunition_storage_shelf
+                SELECT ammunition_rfid,ammunition_category,ammunition_box_id,rounds_issued,ammunition_storage_id,ammunition_storage_shelf
                 FROM `tabWeapon and Ammunition Issue`
                 WHERE personnel_rfid = %(personnelRFID)s and issue_document_number = %(issueDocNumber)s
                 ORDER BY date_and_time DESC 
@@ -57,6 +71,7 @@ def get_ammunition_details(personnelRFID, issueDocNumber):
     ammunitionDetails = frappe.db.sql(sql_query, {"personnelRFID": personnelRFID, "issueDocNumber": issueDocNumber})
     nested_tuple = ammunitionDetails[0]
     data_list = list(nested_tuple)
+
     return data_list
 
 # @frappe.whitelist()
@@ -167,13 +182,16 @@ def get_return_doc_num():
     
     last_document = frappe.db.get_list(doctype='Weapon and Ammunition Return', limit=1, order_by='creation desc')
 
-    doc = frappe.db.get_value("Weapon and Ammunition Return",last_document[0].name, "return_document_number")
-    
-    if doc:
-        prefix = "Return"
-        current_return_number = int(doc[len(prefix):])
-        next_return_number = current_return_number + 1
-        return_doc_num = f"{prefix}{next_return_number}"
+    if last_document:
+        doc = frappe.db.get_value("Weapon and Ammunition Return", last_document[0].name, "return_document_number")
+        
+        if doc:
+            prefix = "Return"
+            current_return_number = int(doc[len(prefix):])
+            next_return_number = current_return_number + 1
+            return_doc_num = f"{prefix}{next_return_number}"
+        else:
+            return_doc_num = "Return1"
     else:
         return_doc_num = "Return1"
 
