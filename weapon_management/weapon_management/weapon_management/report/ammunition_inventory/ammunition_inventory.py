@@ -1,7 +1,6 @@
 # Copyright (c) 2023, Expedien and contributors
 # For license information, please see license.txt
 
-
 import frappe
 
 def execute(filters=None):
@@ -14,22 +13,22 @@ def execute(filters=None):
     query = """
         SELECT 
             tacm.ammunition_category AS "Ammunition Name",
-            SUM(taid.available_quantity) AS "Available Ammunition"
+            SUM(taid.available_rounds_per_box) AS "Available Ammunition"
         FROM 
-            "tabAmmunition In Details" taid 
+            `tabAmmunition In Details` taid 
         INNER JOIN 
-            "tabUnit Master" tum ON taid.unit_location = tum.name
+            `tabUnit Master` tum ON taid.unit_location = tum.name
         INNER JOIN 
-            "tabAmmunition Category Master" tacm ON taid.ammunition_category = tacm.name
+            `tabAmmunition Category Master` tacm ON taid.ammunition_category = tacm.name
     """
 
     where_clause = "WHERE 1=1" 
 
     if filters_dict.get("unit"):
-        where_clause += f" AND tum.name = %(unit)s"
+        where_clause += " AND tum.name = %(unit)s"
 
     if filters_dict.get("ammunition_name"):
-        where_clause += f" AND tacm.name = %(ammunition_name)s"
+        where_clause += " AND tacm.name = %(ammunition_name)s"
 
     if filters_dict.get("from_date") and filters_dict.get("to_date"):
         where_clause += " AND taid.date_acquired BETWEEN %(from_date)s AND %(to_date)s"
