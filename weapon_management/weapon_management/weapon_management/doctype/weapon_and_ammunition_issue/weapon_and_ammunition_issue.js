@@ -145,13 +145,14 @@ frappe.ui.form.on('Weapon and Ammunition Issue', {
 
 
 frappe.ui.form.on('Weapon and Ammunition Issue', {
+    
     personnel_rfid: function(frm) {
         frm.set_value('personnel_id', '');
         frm.set_value('person_name', '');
         frm.set_value('rank', '');
         frm.set_value('weapon_rfid', '');
         
-
+        debugger;
         if (frm.doc.personnel_rfid) {
             // frappe.call({
             //     method: 'weapon_management.weapon_management.doctype.weapon_and_ammunition_issue.weapon_and_ammunition_issue.get_rfid',
@@ -169,6 +170,7 @@ frappe.ui.form.on('Weapon and Ammunition Issue', {
                 },
                 callback: function(response) {
                     var personnelDetails = response.message;
+                    debugger;
                     if (response.message === 1) {
                         frm.set_value('personnel_rfid', '');
                         frappe.throw("Person Already Possesses Weapon.");

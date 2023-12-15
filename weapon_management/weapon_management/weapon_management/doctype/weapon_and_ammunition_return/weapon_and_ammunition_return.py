@@ -5,16 +5,30 @@ import frappe
 from frappe.model.document import Document
 
 class WeaponandAmmunitionReturn(Document):
-	def before_submit(self):
-		# roundsReturned = self.rounds_returned
-		# ammunitionRFID = self.ammunition_rfid
-		# frappe.db.set_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, {"rounds_issued": roundsReturned})
+    def before_submit(self):
+        roundsReturned = self.rounds_returned
+        emptyCaseReturned = self.empty_case_returned
+        emptyCaseBalanced = self.empty_case_balance
 
-		weaponRFID = self.weapon_rfid
-		frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Available"})
+        ammunitionRFID = self.ammunition_rfid
+        ammunitionQuantities = frappe.db.get_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, ["available_rounds_per_box","total_empty_cases_returned","total_empty_cases_lost"])
+        
+        availableRounds = ammunitionQuantities[0]
+        availableRounds+= roundsReturned
 
-		personID = self.personnel_id
-		frappe.db.set_value("Person Master", {"name": personID}, {"weapon_issue_status": "Inactive"})
+        totalEmptyCaseReturned = ammunitionQuantities[1]
+        totalEmptyCaseReturned+= emptyCaseReturned
+
+        totalEmptyCaseLost = ammunitionQuantities[2]
+        totalEmptyCaseLost+= emptyCaseBalanced
+
+        frappe.db.set_value("Ammunition In Details", {"rfid_tag": ammunitionRFID}, {"available_rounds_per_box": availableRounds, "total_empty_cases_returned":totalEmptyCaseReturned,"total_empty_cases_lost":totalEmptyCaseLost})
+
+        weaponRFID = self.weapon_rfid
+        frappe.db.set_value("Weapon In Details", {"rfid_tag": weaponRFID}, {"status": "Available"})
+
+        personID = self.personnel_id
+        frappe.db.set_value("Person Master", {"name": personID}, {"weapon_issue_status": "Inactive"})
 
 
 @frappe.whitelist()
