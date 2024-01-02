@@ -212,6 +212,6 @@ app_license = "MIT"
 # Authentication and authorization
 # --------------------------------
 
-# auth_hooks = [
-#	"weapon_management.auth.validate"
-# ]
+auth_hooks = [
+	"weapon_management.auth.validate"
+]

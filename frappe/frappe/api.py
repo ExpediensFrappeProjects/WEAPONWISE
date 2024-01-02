@@ -37,7 +37,7 @@ def handle():
 
 	`/api/resource/{doctype}/{name}?run_method={method}` will run a whitelisted controller method
 	"""
-
+	validate_auth()
 	parts = frappe.request.path[1:].split("/", 3)
 	call = doctype = name = None
 
@@ -52,6 +52,21 @@ def handle():
 
 	if call == "method":
 		frappe.local.form_dict.cmd = doctype
+		
+		# if (usr & pwd):
+		# 	try:
+		# 		login_manager = frappe.auth.LoginManager()
+		# 		login_manager.authenticate(user=usr, pwd=pwd)
+		# 		login_manager.post_login()
+		# 	except frappe.exceptions.AuthenticationError:
+		# 		frappe.clear_messages()
+		# 		frappe.local.response["message"] = {
+		# 			"success_key":0,
+		# 			"message":"Authentication Error!"
+		# 		}
+		# else:
+		# 	frappe.throw("Authentication Error")
+
 		return frappe.handler.handle()
 
 	elif call == "resource":

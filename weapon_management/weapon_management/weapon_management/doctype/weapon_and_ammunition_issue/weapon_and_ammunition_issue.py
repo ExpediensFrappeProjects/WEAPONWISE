@@ -28,6 +28,7 @@ class WeaponandAmmunitionIssue(Document):
 
 
 
+
 @frappe.whitelist()
 def duty_name_options(unitLocation):
     current_datetime = datetime.now()
@@ -68,7 +69,6 @@ def get_personnels_details(personnelRFID, unitLocation=None):
         return personnelsDetails
 
 
-
 @frappe.whitelist()
 def get_weapon_details(weaponRFID,unitLocation):
     # weaponCategoryAssignedList = frappe.get_all("Weapon Category Assigned List", filters={"parent": personnelID}, fields=['weapon_category'])
@@ -104,15 +104,20 @@ def validate_and_get_ammunition_details(ammunition_rfid,unitLocation):
 @frappe.whitelist()
 def get_authorizer(unitLocation):
     authorizerList = frappe.get_all('Person Master', filters={"assigned_unit": unitLocation, "is_authorizer": "1"}, fields=['name'])
-    authorizerList = [name['name'] for name in authorizerList]
-    return authorizerList
+    authorizerName = [name['name'] for name in authorizerList]
+    return authorizerName
 
+@frappe.whitelist()
+def get_authorizer_api(unitLocation):
+    authorizerList = frappe.get_all('Person Master', filters={"assigned_unit": unitLocation, "is_authorizer": "1"}, fields=['name'])
+    authorizerName = [name['name'] for name in authorizerList]
+    frappe.response["message"]={"authorizers":authorizerName}
 
 @frappe.whitelist()
 def get_armourer(unitLocation):
     armourerList = frappe.get_all('Person Master', filters={"assigned_unit": unitLocation, "is_armourer": "1"}, fields=['name'])
-    armourerList = [name['name'] for name in armourerList]
-    return armourerList
+    armourerName = [name['name'] for name in armourerList]
+    return armourerName
 
 
 @frappe.whitelist()
